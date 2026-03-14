@@ -167,6 +167,68 @@ footer {
     justify-content: center;
 }
 
+/* Search Overlay */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--nav-bg); /* Uses the existing semi-transparent nav color */
+    backdrop-filter: blur(20px);
+    z-index: 2000; /* Higher than the navbar */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5vh;
+    transition: opacity 0.3s ease;
+}
+
+.search-overlay.active {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+}
+
+.search-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+#search-input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--text-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 0;
+    outline: none;
+}
+
+#search-input::placeholder {
+    color: var(--secondary-text);
+    opacity: 0.5;
+}
+
+.close-search {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+}
+
+/* Results Area */
+.search-results {
+    margin-top: 2rem;
+}
+
 /* --- Responsive Layouts --- */
 
 /* Mobile Drawer (Under 1024px) */

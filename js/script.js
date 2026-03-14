@@ -1,4 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Search Overlay Logic ---
+    const searchBtn = document.getElementById('search-btn');
+    const searchOverlay = document.getElementById('search-overlay');
+    const closeSearch = document.getElementById('close-search');
+    const searchInput = document.getElementById('search-input');
+
+    if (searchBtn && searchOverlay) {
+        searchBtn.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+            setTimeout(() => searchInput.focus(), 100); // Auto-focus input
+        });
+
+        const hideSearch = () => {
+            searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            searchInput.value = ''; // Clear input on close
+        };
+
+        closeSearch.addEventListener('click', hideSearch);
+
+        // Close on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                hideSearch();
+            }
+        });
+    }
+    
     // --- Theme Logic ---
     const themeToggle = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
