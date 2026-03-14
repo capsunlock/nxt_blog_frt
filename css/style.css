@@ -154,6 +154,19 @@ body {
     transition: opacity 0.2s ease, color 0.2s ease;
 }
 
+main {
+    min-height: fit-content;
+}
+
+footer {
+    padding: 2rem 5%; 
+    border-top: 1px solid #30363d; 
+    margin-top: 2rem; 
+    opacity: 0.6; 
+    display: flex; 
+    justify-content: center;
+}
+
 /* --- Responsive Layouts --- */
 
 /* Mobile Drawer (Under 1024px) */
