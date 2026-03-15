@@ -229,6 +229,20 @@ footer {
     margin-top: 2rem;
 }
 
+/* Main Content Layout */
+.content {
+    max-width: 800px; /* Narrower than nav for better reading focus */
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+
 /* --- Responsive Layouts --- */
 
 /* Mobile Drawer (Under 1024px) */
@@ -295,3 +309,4 @@ footer {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+

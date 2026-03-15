@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal — Editorial</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/post_list.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#">Articles</a>
+                <a href="#">Series</a>
+                <a href="#">Talk to us</a>
+            </div>
+            <div class="nav-controls">
+                <button id="search-btn"><i data-lucide="search"></i></button>
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <section class="hero-section">
+            <div class="hero-nav">
+                <button id="prev-hero">←</button>
+                <button id="next-hero">→</button>
+            </div>
+
+            <div class="hero-track" id="heroTrack">
+                <article class="post-card hero-card">
+                    <div class="post-image"><img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200" alt=""></div>
+                    <div class="post-meta">Mar 14, 2026 • <span class="read-time">12 min</span></div>
+                    <h2 class="post-title"><a href="#">Minimalist Structures</a></h2>
+                    <p class="post-excerpt">Exploring the intersection of brutalist architecture and digital interfaces.</p>
+                </article>
+
+                <article class="post-card hero-card">
+                    <div class="post-image"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200" alt=""></div>
+                    <div class="post-meta">Mar 12, 2026 • <span class="read-time">8 min</span></div>
+                    <h2 class="post-title"><a href="#">The Art of Less</a></h2>
+                    <p class="post-excerpt">Why successful products move toward extreme simplification.</p>
+                </article>
+
+                <article class="post-card hero-card">
+                    <div class="post-image"><img src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=1200" alt=""></div>
+                    <div class="post-meta">Mar 10, 2026 • <span class="read-time">5 min</span></div>
+                    <h2 class="post-title"><a href="#">2026 Design Trends</a></h2>
+                    <p class="post-excerpt">A deep dive into the shifting aesthetics of the modern web.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="scattered-feed" id="postGrid">
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Mar 08 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 min</span></div>
+                <h2 class="post-title"><a href="#">Subtle Textures</a></h2>
+                <p class="post-excerpt">Physical sensations in a digital world. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Mar 05 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6 min</span></div>
+                <h2 class="post-title"><a href="#">Typography Rhythm</a></h2>
+                <p class="post-excerpt">The backbone of minimalist layout. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Mar 01 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 3 min</span></div>
+                <h2 class="post-title"><a href="#">Dark Mode UX</a></h2>
+                <p class="post-excerpt">Balancing eye comfort with depth. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Feb 25 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 10 min</span></div>
+                <h2 class="post-title"><a href="#">Future Workspace</a></h2>
+                <p class="post-excerpt">How we work in 2026. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Feb 20 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span></div>
+                <h2 class="post-title"><a href="#">Soft UI Trends</a></h2>
+                <p class="post-excerpt">The return of organic shapes. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Feb 15 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 8 min</span></div>
+                <h2 class="post-title"><a href="#">Data Visualization</a></h2>
+                <p class="post-excerpt">Making the invisible visible. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+
+            <article class="post-card scattered-item">
+                <div class="post-image"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800" alt=""></div>
+                <div class="post-meta">Feb 10 • <span class="read-time"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 2 min</span></div>
+                <h2 class="post-title"><a href="#">Color Theory</a></h2>
+                <p class="post-excerpt">Minimalism doesn't mean monochrome. Read more about this topic...</p>
+                <a href="#" class="continue-link">Continue reading →</a>
+            </article>
+        </section>
+
+        <div class="load-more-container">
+            <button id="loadMoreBtn" class="load-more-btn">Load More Stories</button>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script src="js/post_list.js"></script>
+</body>
+</html>
