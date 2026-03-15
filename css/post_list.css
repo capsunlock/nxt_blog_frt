@@ -9,10 +9,11 @@
 /* --- Hero Section & Track --- */
 .hero-section {
     position: relative;
-    padding: 8rem 0;
+    padding: 0;
     width: 100vw;
     overflow: hidden;
     background: var(--bg-color);
+    display: block;
 }
 
 .hero-track {
@@ -74,16 +75,47 @@
     color: var(--bg-color);
 }
 
+/* --- Metadata: Category & Tags --- */
+.post-category {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.post-tags {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.post-tags a {
+    font-size: 0.75rem;
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-tags a:hover {
+    color: var(--text-color);
+}
+
 /* --- Scattered Feed Grid --- */
+.scattered-feed {
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    max-width: 1200px; 
+    margin: auto; 
+    padding: 0 2rem;
+}
+
 @media (min-width: 1024px) {
     .scattered-feed {
-        display: grid; 
         grid-template-columns: 1fr 1fr; 
         column-gap: 8vw; 
         row-gap: 12rem;
-        max-width: 1200px; 
         margin: 10rem auto; 
-        padding: 0 2rem;
     }
 
     .scattered-item { 
@@ -96,72 +128,50 @@
     .scattered-item.reveal { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Components --- */
+/* --- Core Components --- */
 .post-image {
     width: 100%; 
     aspect-ratio: 16/9; 
     overflow: hidden;
     margin-bottom: 1.5rem; 
     background: #eee;
+    border-radius: 2px;
 }
 
 [data-theme="dark"] .post-image { background: #1a1a1a; }
-
-.post-image img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    transition: transform 0.8s ease; 
-}
-
+.post-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .post-card:hover .post-image img { transform: scale(1.05); }
 
 .post-meta {
-    display: flex; 
-    align-items: center; 
-    gap: 0.5rem;
-    color: var(--secondary-text); 
-    font-size: 0.85rem; 
-    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    color: var(--secondary-text); font-size: 0.85rem; margin-bottom: 0.8rem;
 }
 
-.post-title { font-size: 1.8rem; margin-bottom: 0.8rem; line-height: 1.2; font-weight: 700; }
+.post-title { font-size: 1.8rem; margin-bottom: 0.6rem; line-height: 1.2; font-weight: 700; }
 .post-title a { text-decoration: none; color: var(--text-color); }
-
 .post-excerpt { color: var(--secondary-text); font-size: 1rem; line-height: 1.6; max-width: 45ch; margin-bottom: 1.5rem; }
 
 .continue-link { 
-    color: var(--text-color); 
-    font-weight: 700; 
-    text-decoration: none; 
-    font-size: 0.85rem; 
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color); font-weight: 700; text-decoration: none; font-size: 0.85rem; 
+    text-transform: uppercase; border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2px;
+    transition: border-color 0.3s;
 }
+.continue-link:hover { border-color: var(--text-color); }
 
 /* --- Load More --- */
-.load-more-container { text-align: center; margin: 8rem 0 10rem; }
+.load-more-container { text-align: center; margin: 5rem 0 10rem; }
 .load-more-btn {
-    padding: 1.2rem 3rem; 
-    background: none; 
-    border: 1px solid var(--border-color);
-    color: var(--text-color); 
-    font-weight: 600; 
-    cursor: pointer; 
-    transition: 0.3s ease;
+    padding: 1.2rem 3rem; background: none; border: 1px solid var(--border-color);
+    color: var(--text-color); font-weight: 600; cursor: pointer; transition: 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
-
 .load-more-btn:hover { background: var(--text-color); color: var(--bg-color); }
 
 /* --- Mobile Styling --- */
 @media (max-width: 1023px) {
-    .hero-nav { display: none; }
-    .hero-track { 
-        overflow-x: auto; 
-        padding: 0 5vw; 
-        scroll-snap-type: x mandatory;
-    }
-    .hero-card { flex: 0 0 85vw; opacity: 1; filter: none; transform: none; scroll-snap-align: center; }
-    .scattered-feed { display: flex; flex-direction: column; padding: 2rem; gap: 6rem; }
+    .hero-section { display: none; }
     .scattered-item { opacity: 1 !important; transform: none !important; margin: 0 !important; }
+    .post-title { font-size: 1.75rem; }
 }

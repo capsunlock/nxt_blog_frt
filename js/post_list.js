@@ -8,53 +8,44 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 1;
 
     function updateHero() {
-        if (!track || cards.length === 0) return;
+        if (!track || cards.length === 0 || window.innerWidth < 1024) return;
 
         const viewportWidth = window.innerWidth;
         const cardWidth = cards[0].offsetWidth;
         const gap = parseFloat(getComputedStyle(track).gap || 0);
 
-        // 1. Force the active class BEFORE moving to prevent visual lag
         cards.forEach((card, i) => {
             card.classList.toggle('featured', i === currentIndex);
         });
 
-        // 2. Calculate the center point based on the index
-        // This math bypasses getBoundingClientRect for the move itself to ensure instant response
+        // Center calculation
         const centerOffset = (viewportWidth / 2) - (cardWidth / 2);
         const totalTranslate = centerOffset - (currentIndex * (cardWidth + gap));
 
         track.style.transform = `translateX(${totalTranslate}px)`;
     }
 
-    // Explicitly update focus on arrow clicks
+    // Navigation Events
     prevBtn?.addEventListener('click', (e) => {
         e.preventDefault();
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateHero();
-        }
+        if (currentIndex > 0) { currentIndex--; updateHero(); }
     });
 
     nextBtn?.addEventListener('click', (e) => {
         e.preventDefault();
-        if (currentIndex < cards.length - 1) {
-            currentIndex++;
-            updateHero();
-        }
+        if (currentIndex < cards.length - 1) { currentIndex++; updateHero(); }
     });
 
-    // Handle clicks directly on cards
     cards.forEach((card, index) => {
         card.addEventListener('click', () => {
-            if (index !== currentIndex) {
-                currentIndex = index;
-                updateHero();
+            if (index !== currentIndex) { 
+                currentIndex = index; 
+                updateHero(); 
             }
         });
     });
 
-    // --- Intersection Observer for Feed ---
+    // --- Feed Intersection Observer ---
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -62,35 +53,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.scattered-item').forEach(item => revealObserver.observe(item));
 
-    // --- Load More Simulation ---
+    // --- Load More ---
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     loadMoreBtn?.addEventListener('click', () => {
         loadMoreBtn.innerText = "Sourcing...";
+        loadMoreBtn.disabled = true;
+
         setTimeout(() => {
             const grid = document.getElementById('postGrid');
             for(let i=0; i<2; i++) {
                 const newItem = document.createElement('article');
                 newItem.className = 'post-card scattered-item';
+                // Note: The template literal below ensures consistent metadata
                 newItem.innerHTML = `
-                    <div class="post-image"><img src="https://picsum.photos/id/${Math.floor(Math.random()*50)}/800/450" alt=""></div>
-                    <div class="post-meta">Mar 2026 • 5 min</div>
-                    <h2 class="post-title"><a href="#">New Content</a></h2>
-                    <p class="post-excerpt">Dynamic entry added to grid.</p>
+                    <div class="post-image"><img src="https://picsum.photos/id/${Math.floor(Math.random()*50) + 10}/800/450" alt="New Post"></div>
+                    <div class="post-meta">
+                        <span class="post-category">Archive</span> • Mar 2026 • 5 min
+                    </div>
+                    <h2 class="post-title"><a href="#">Expanding the Narrative</a></h2>
+                    <div class="post-tags">
+                        <a href="#">#New</a> <a href="#">#Editorial</a>
+                    </div>
+                    <p class="post-excerpt">Fresh insights added to the grid with dynamic metadata support.</p>
+                    <a href="#" class="continue-link">Continue reading →</a>
                 `;
                 grid.appendChild(newItem);
-                revealObserver.observe(newItem);
+                
+                // Observe the new item immediately
+                if (window.innerWidth >= 1024) {
+                    revealObserver.observe(newItem);
+                }
             }
             loadMoreBtn.innerText = "Load More Stories";
-        }, 600);
+            loadMoreBtn.disabled = false;
+        }, 800);
     });
 
-    // Adjust on window resize
     window.addEventListener('resize', updateHero);
     
-    // Initial call to set starting position
+    // Initial Positioning
     updateHero();
 });
