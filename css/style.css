@@ -29,6 +29,29 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* --- Scroll Progress Bar --- */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10001; /* Above navbar */
+    width: 100%;
+    height: 4px;
+    background: rgba(150, 150, 150, 0.1);
+}
+
+[data-theme="dark"] .progress-container {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--text-color);
+    width: 0%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Navbar */
 .navbar {
     position: sticky;
@@ -242,6 +265,32 @@ footer {
     gap: 4rem;
 }
 
+/* --- Back to Top --- */
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* --- Responsive Layouts --- */
 

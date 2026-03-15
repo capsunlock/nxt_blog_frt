@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 newItem.innerHTML = `
                     <div class="post-image"><img src="https://picsum.photos/id/${Math.floor(Math.random()*50) + 10}/800/450" alt="New Post"></div>
                     <div class="post-meta">
-                        <span class="post-category">Archive</span> • Mar 2026 • 5 min
+                        <span class="post-category">Archive</span> • Mar 2026 • <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min
                     </div>
                     <h2 class="post-title"><a href="#">Expanding the Narrative</a></h2>
                     <div class="post-tags">
