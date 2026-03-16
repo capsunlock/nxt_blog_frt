@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/archive.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-links">
+                <a href="post_list.html">Articles</a>
+                <a href="archive.html" class="active">Series</a>
+                <a href="#">About</a>
+            </div>
+            <div class="nav-controls">
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="archive-container">
+        <header class="archive-header">
+            <h1 class="archive-title">Collections</h1>
+            <p class="archive-description">Curated deep-dives into architectural philosophy, digital aesthetics, and minimalism.</p>
+        </header>
+
+        <section class="series-grid">
+            <div class="series-card">
+                <div class="series-image">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800" alt="Series 1">
+                    <span class="series-count">5 Parts</span>
+                </div>
+                <div class="series-content">
+                    <span class="series-meta">Curated Series</span>
+                    <h2>The Brutalist Digital</h2>
+                    <p>Exploring how 20th-century concrete architecture shaped the modern web's logic.</p>
+                    <a href="collection_single.html" class="view-series">View Collection →</a>
+                </div>
+            </div>
+
+            <div class="series-card">
+                <div class="series-image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800" alt="Series 2">
+                    <span class="series-count">3 Parts</span>
+                </div>
+                <div class="series-content">
+                    <span class="series-meta">Curated Series</span>
+                    <h2>The Typography of Silence</h2>
+                    <p>How variable fonts and fluid rhythm create psychological breathing room in design.</p>
+                    <a href="collection_single.html" class="view-series">View Collection →</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="load-series-container">
+            <button id="load-more-series" class="load-more-btn">See More Collections</button>
+        </div>
+
+        <section class="index-section">
+            <div class="index-controls">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                    <button class="filter-btn" data-filter="architecture">Architecture</button>
+                    <button class="filter-btn" data-filter="strategy">Strategy</button>
+                </div>
+            </div>
+
+            <div class="master-index">
+                <div class="index-row" data-category="architecture">
+                    <span class="index-date">Mar 2026</span>
+                    <h3 class="index-title"><a href="post_single.html">Minimalist Structures & The Digital Void</a></h3>
+                    <span class="index-tag">#Architecture</span>
+                </div>
+                <div class="index-row" data-category="design">
+                    <span class="index-date">Feb 2026</span>
+                    <h3 class="index-title"><a href="#">The Art of Less: Why Simplification Wins</a></h3>
+                    <span class="index-tag">#Design</span>
+                </div>
+                <div class="index-row" data-category="strategy">
+                    <span class="index-date">Jan 2026</span>
+                    <h3 class="index-title"><a href="#">Psychology of Empty Space</a></h3>
+                    <span class="index-tag">#Strategy</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script src="js/archive.js"></script>
+</body>
+</html>

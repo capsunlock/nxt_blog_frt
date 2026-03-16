@@ -97,3 +97,41 @@ document.getElementById("backToTop")?.addEventListener("click", () => {
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
+
+
+
+
+
+
+
+
+
+// 2. Custom Cursor Logic
+    const cursor = document.createElement('div');
+    cursor.id = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    // Style cursor dynamically (or via CSS)
+    Object.assign(cursor.style, {
+        width: '20px',
+        height: '20px',
+        border: '1px solid var(--text-color)',
+        borderRadius: '50%',
+        position: 'fixed',
+        pointerEvents: 'none',
+        zIndex: '10000',
+        transition: 'transform 0.1s ease-out',
+        mixBlendMode: 'difference'
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+    });
+
+    // Expand cursor on links/buttons
+    const hoverables = document.querySelectorAll('a, button, .series-card, .index-row');
+    hoverables.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(3)');
+        el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+    });

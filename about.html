@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="post_list.html">Articles</a>
+                <a href="archive.html">Series</a>
+                <a href="about.html" class="active">Manifesto</a>
+            </div>
+            <div class="nav-controls">
+                <button id="search-btn" aria-label="Search"><i data-lucide="search"></i></button>
+                <button id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="manifesto-container">
+        <header class="manifesto-hero">
+            <h1 class="giant-statement">Truth to <br>materials. <br>Logic over <br>clutter.</h1>
+        </header>
+
+        <section class="manifesto-grid">
+            <div class="philosophy-text">
+                <p class="lead-paragraph">
+                    This Journal is an exercise in digital restraint. We believe the modern web is too loud, too heavy, and too distracted. 
+                </p>
+                <p>
+                    Inspired by the brutalist movement, we prioritize structure over ornamentation. Every pixel should serve a purpose; every line of code should have a reason to exist. We build for clarity, not just for eyes, but for minds.
+                </p>
+            </div>
+
+            <div class="contact-sidebar">
+                <div class="contact-group">
+                    <span class="label">Direct Inquiries</span>
+                    <a href="mailto:hello@journal.com" class="contact-link">hello@journal.com</a>
+                </div>
+                <div class="contact-group">
+                    <span class="label">Digital Spaces</span>
+                    <div class="social-links">
+                        <a href="#" class="social-item">Twitter / X</a>
+                        <a href="#" class="social-item">Instagram</a>
+                        <a href="#" class="social-item">Are.na</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search philosophy, design, logic...">
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
