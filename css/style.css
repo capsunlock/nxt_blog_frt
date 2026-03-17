@@ -360,26 +360,35 @@ footer {
 }
 
 
-
-
-
-
-
-
 /* Custom Cursor Container */
-
 #custom-cursor {
-    display: block;
-    transform: translate(-50%, -50%); /* Center the circle on the tip */
+    position: fixed; /* Required for movement */
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-color);
+    background-color: rgba(0, 0, 0, 0.05); /* Very faint fill to give it body */
+    border-radius: 50%;
+    pointer-events: none; /* Critical: allows clicking through the cursor */
+    z-index: 10000;
+    mix-blend-mode: difference; /* High-end effect: cursor changes color based on background */
+    transition: transform 0.15s ease-out, background-color 0.2s ease; /* Smooth hover scaling */
+    transform: translate(-50%, -50%); 
+    display: none; /* Hidden by default, shown via JS or desktop check */
 }
 
-@media (max-width: 1024px) {
-    #custom-cursor { display: none !important; }
-    body { cursor: auto !important; }
+/* Ensure visibility on dark mode */
+[data-theme="dark"] #custom-cursor {
+    border-color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Hide default cursor only on desktop */
+/* Show only on desktop */
 @media (min-width: 1025px) {
+    #custom-cursor { 
+        display: block; 
+    }
     body, a, button {
         cursor: none !important;
     }

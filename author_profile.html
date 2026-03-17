@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Profile — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .author-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 5rem;
+        }
+        .author-header {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .author-img {
+            width: 180px;
+            height: 180px;
+            background: #eee;
+            filter: grayscale(1);
+            object-fit: cover;
+        }
+        .author-info .label {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            font-weight: 800;
+            opacity: 0.5;
+        }
+        .author-info h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0.5rem 0 1.5rem;
+            letter-spacing: -0.03em;
+        }
+        .author-bio {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--secondary-text);
+            max-width: 55ch;
+        }
+        .author-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .author-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--text-color);
+        }
+        
+        /* --- New: Author Navigation --- */
+        .author-nav {
+            display: flex;
+            gap: 2.5rem;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .author-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 800;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+        .author-nav a.active, .author-nav a:hover {
+            opacity: 1;
+        }
+
+        /* --- Bibliography Styles --- */
+        .biblio-title {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            opacity: 0.6;
+        }
+        .biblio-list {
+            margin-bottom: 3rem;
+        }
+        .index-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 120px;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: padding-left 0.3s ease;
+        }
+        .index-row:hover {
+            padding-left: 10px;
+            color: var(--accent-color);
+        }
+        .index-date { font-size: 0.8rem; opacity: 0.5; }
+        .index-title { font-weight: 700; font-size: 1.1rem; }
+        .index-cat { text-align: right; font-size: 0.7rem; text-transform: uppercase; font-weight: 800; opacity: 0.4; }
+
+        /* --- Load More Button --- */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+        .load-more-btn {
+            background: none;
+            border: 2px solid var(--text-color);
+            color: var(--text-color);
+            padding: 1rem 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .load-more-btn:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .author-header { grid-template-columns: 1fr; gap: 2rem; text-align: center; justify-items: center; }
+            .author-nav { justify-content: center; gap: 1.5rem; }
+            .index-row { grid-template-columns: 1fr 100px; }
+            .index-date { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="post_list.html">Articles</a>
+                <a href="archive.html">Series</a>
+                <a href="about.html">Manifesto</a>
+            </div>
+            <div class="nav-controls">
+                <button id="search-btn"><i data-lucide="search"></i></button>
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="author-container">
+        <header class="author-header">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400" alt="Marcus" class="author-img">
+            <div class="author-info">
+                <span class="label">Main Contributor</span>
+                <h1>Marcus Aurelius</h1>
+                <p class="author-bio">Writer and philosopher focusing on digital minimalism and the intersection of human logic with algorithmic architecture.</p>
+                <div class="author-links">
+                    <a href="#">Twitter</a>
+                    <a href="#">Newsletter</a>
+                    <a href="#">RSS Feed</a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="author-nav">
+            <a href="#" class="active">Published Articles</a>
+            <a href="#">Curated Series</a>
+        </nav>
+
+        <section class="author-bibliography">
+            <h3 class="biblio-title">Latest Work</h3>
+            <div class="biblio-list" id="author-biblio-list">
+                <a href="post_single.html" class="index-row">
+                    <span class="index-date">Mar 12</span>
+                    <span class="index-title">The Ethics of Design Constraints</span>
+                    <span class="index-cat">Philosophy</span>
+                </a>
+                <a href="post_single.html" class="index-row">
+                    <span class="index-date">Feb 28</span>
+                    <span class="index-title">Architecture of the Void</span>
+                    <span class="index-cat">Design</span>
+                </a>
+                <a href="post_single.html" class="index-row">
+                    <span class="index-date">Jan 15</span>
+                    <span class="index-title">Simplicity as Performance</span>
+                    <span class="index-cat">Technology</span>
+                </a>
+            </div>
+
+            <div class="load-more-container">
+                <button class="load-more-btn" id="author-load-more">See More Work</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Specific logic for Author Load More
+        document.getElementById('author-load-more')?.addEventListener('click', function() {
+            const btn = this;
+            btn.innerText = "Sourcing Archives...";
+            
+            setTimeout(() => {
+                const biblioList = document.getElementById('author-biblio-list');
+                const newRow = `
+                    <a href="post_single.html" class="index-row" style="opacity: 0; transform: translateY(10px); transition: all 0.4s ease;">
+                        <span class="index-date">Dec 20</span>
+                        <span class="index-title">The Digital Stoic</span>
+                        <span class="index-cat">Editorial</span>
+                    </a>
+                `;
+                biblioList.insertAdjacentHTML('beforeend', newRow);
+                
+                const lastAdded = biblioList.lastElementChild;
+                setTimeout(() => {
+                    lastAdded.style.opacity = '1';
+                    lastAdded.style.transform = 'translateY(0)';
+                }, 10);
+
+                btn.innerText = "See More Work";
+            }, 800);
+        });
+    </script>
+</body>
+</html>

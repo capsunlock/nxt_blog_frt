@@ -179,6 +179,11 @@ figcaption {
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
+
+    a {
+        color: var(--text-color);
+        text-decoration: none;
+    }
 }
 
 .author-card-img {
