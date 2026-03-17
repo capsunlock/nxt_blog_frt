@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Dashboard — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --admin-bg: #f9f9f9;
+        }
+
+        [data-theme="dark"] {
+            --admin-bg: #0a0a0a;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--admin-bg);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-color);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .sidebar-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-nav {
+            padding: 2rem;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .nav-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-group-title {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 800;
+            opacity: 0.4;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.8rem 0;
+            transition: opacity 0.2s;
+            opacity: 0.7;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            opacity: 1;
+        }
+
+        .sidebar-link i {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* --- Mobile Overlay --- */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            z-index: 90;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        /* --- Mobile Nav Toggle --- */
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-nav-toggle { display: block; }
+            
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+
+            .sidebar.active ~ .sidebar-overlay {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .main-stage {
+                margin-left: 0 !important;
+                padding-top: 6rem !important;
+            }
+
+            .dash-header {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+                padding: 2rem !important;
+            }
+
+            .author-img { margin: 0 auto; }
+            .header-actions { justify-self: center; margin-top: 1rem; }
+        }
+
+        /* --- Main Content --- */
+        .main-stage {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 4rem 5%;
+            transition: margin-left 0.4s ease;
+        }
+
+        /* --- Author Header --- */
+        .dash-header {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 2.5rem;
+            align-items: start;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .author-img {
+            width: 120px;
+            height: 120px;
+            filter: grayscale(1);
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .author-info .label {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            font-weight: 800;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-info h1 {
+            font-size: 2.2rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 800;
+        }
+
+        .author-bio {
+            max-width: 60ch;
+            font-size: 1rem;
+            opacity: 0.7;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .author-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Edit State Visibility */
+        .edit-field { display: none; }
+        .view-field { display: block; }
+        .edit-mode .edit-field { display: block; }
+        .edit-mode .view-field { display: none; }
+
+        .dash-input, .dash-textarea {
+            width: 100%;
+            background: var(--admin-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.7rem;
+            font-family: inherit;
+            font-size: inherit;
+            margin-bottom: 0.75rem;
+            outline: none;
+        }
+
+        .edit-btn {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .save-btn { background: #22863a; color: white; display: none; }
+        .edit-mode .save-btn { display: flex; }
+        .edit-mode .edit-trigger-btn { display: none; }
+
+        /* --- Stats & Activity --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: var(--bg-color);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value { font-size: 2rem; font-weight: 800; }
+
+        .activity-section { background: var(--bg-color); border: 1px solid var(--border-color); }
+
+        .table-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-row {
+            display: grid;
+            grid-template-columns: 1fr 120px 100px;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .activity-row:last-child { border-bottom: none; }
+
+        .status-pill {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 4px 8px;
+            background: #eee;
+        }
+
+        .status-published { background: #e6ffed; color: #22863a; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">JOURNAL</a>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <span class="nav-group-title">Content</span>
+                <a href="dashboard_home.html" class="sidebar-link active"><i data-lucide="layout-dashboard"></i> Overview</a>
+                <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
+                <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
+                <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">Analytics</span>
+                <a href="#" class="sidebar-link"><i data-lucide="bar-chart-3"></i> Traffic</a>
+                <a href="#" class="sidebar-link"><i data-lucide="users"></i> Subscribers</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">System</span>
+                <a href="#" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+                <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <main class="main-stage">
+        
+        <button class="mobile-nav-toggle" id="menu-toggle">
+            <i data-lucide="menu"></i>
+        </button>
+        
+        <header class="dash-header" id="profile-header">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400" alt="Marcus" class="author-img">
+            
+            <div class="author-info">
+                <span class="label">Profile Settings</span>
+                
+                <h1 class="view-field" id="display-name">Marcus Aurelius</h1>
+                <input type="text" class="edit-field dash-input" id="input-name" value="Marcus Aurelius">
+
+                <p class="author-bio view-field" id="display-bio">Writer and philosopher focusing on digital minimalism and the intersection of human logic with algorithmic architecture.</p>
+                <textarea class="edit-field dash-textarea" id="input-bio" rows="3">Writer and philosopher focusing on digital minimalism and the intersection of human logic with algorithmic architecture.</textarea>
+
+                <div class="author-links view-field" id="display-links">
+                    <a href="#">Twitter</a> / <a href="#">Newsletter</a> / <a href="#">RSS</a>
+                </div>
+                <div class="edit-field">
+                    <input type="text" class="dash-input" id="input-links" value="Twitter, Newsletter, RSS" placeholder="Comma separated links">
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="edit-btn edit-trigger-btn" onclick="toggleEditMode()">
+                    <i data-lucide="edit-3"></i> Edit Profile
+                </button>
+                <button class="edit-btn save-btn" onclick="saveProfile()">
+                    <i data-lucide="check"></i> Save Changes
+                </button>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Reads</span>
+                <div class="stat-value">42.8k</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Avg. Read Time</span>
+                <div class="stat-value">4:12</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Subscribers</span>
+                <div class="stat-value">1,204</div>
+            </div>
+        </section>
+
+        <section class="activity-section">
+            <div class="table-header">
+                <span class="nav-group-title" style="margin:0">Recent Drafts & Posts</span>
+                <a href="my_posts.html" style="font-size: 0.7rem; font-weight: 800; color: var(--text-color); text-decoration: none;">VIEW ALL →</a>
+            </div>
+            <div class="activity-list">
+                <div class="activity-row">
+                    <span style="font-weight: 700;">The Ethics of Design Constraints</span>
+                    <span class="status-pill status-published">Published</span>
+                    <span style="font-size: 0.8rem; opacity: 0.5; text-align: right;">2h ago</span>
+                </div>
+                <div class="activity-row">
+                    <span style="font-weight: 700;">Minimalist Structures (Part 2)</span>
+                    <span class="status-pill">Draft</span>
+                    <span style="font-size: 0.8rem; opacity: 0.5; text-align: right;">Yesterday</span>
+                </div>
+                <div class="activity-row">
+                    <span style="font-weight: 700;">Why Algorithms Fail Poetry</span>
+                    <span class="status-pill status-published">Published</span>
+                    <span style="font-size: 0.8rem; opacity: 0.5; text-align: right;">3 days ago</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        // 1. Icon Initialization
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // 2. Sidebar Navigation Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            const isActive = sidebar.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
+            lucide.createIcons();
+        }
+
+        if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', toggleSidebar);
+
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth <= 1024) toggleSidebar();
+            });
+        });
+
+        // 3. Profile Edit Logic
+        function toggleEditMode() {
+            document.getElementById('profile-header').classList.toggle('edit-mode');
+            lucide.createIcons();
+        }
+
+        function saveProfile() {
+            const newName = document.getElementById('input-name').value;
+            const newBio = document.getElementById('input-bio').value;
+            const newLinks = document.getElementById('input-links').value;
+
+            document.getElementById('display-name').innerText = newName;
+            document.getElementById('display-bio').innerText = newBio;
+            
+            const linkHTML = newLinks.split(',').map(l => `<a href="#">${l.trim()}</a>`).join(' / ');
+            document.getElementById('display-links').innerHTML = linkHTML;
+
+            toggleEditMode();
+        }
+    </script>
+</body>
+</html>
