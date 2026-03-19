@@ -141,6 +141,30 @@
 
         .page-header h1 { font-size: 2.5rem; font-weight: 800; margin: 0; }
 
+        /* --- Improved Create Button --- */
+        .btn-create {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--text-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            padding: 1rem 1.8rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            opacity: 0.9;
+        }
+
         /* --- Filter Bar --- */
         .filter-bar {
             display: flex;
@@ -192,37 +216,53 @@
 
         .post-row td { padding: 1.5rem; vertical-align: middle; }
 
-        .post-title { font-weight: 700; font-size: 1rem; color: var(--text-color); text-decoration: none; }
-        .post-meta { font-size: 0.75rem; opacity: 0.5; margin-top: 0.3rem; }
+        .post-title { font-weight: 700; font-size: 1.1rem; color: var(--text-color); text-decoration: none; display: block; margin-bottom: 4px; }
+        .post-meta { font-size: 0.75rem; opacity: 0.5; font-weight: 500; }
+        
+        /* Stats Styling */
+        .post-stats { display: flex; flex-direction: column; gap: 4px; }
+        .stat-item { font-size: 0.75rem; font-weight: 600; color: var(--text-color); opacity: 0.6; }
 
         .status-pill {
             font-size: 0.6rem;
             text-transform: uppercase;
             font-weight: 800;
-            padding: 4px 8px;
+            padding: 4px 10px;
             background: #eee;
         }
 
         .status-published { background: #e6ffed; color: #22863a; }
         .status-draft { background: #fffbdd; color: #735c0f; }
 
-        .actions { display: flex; gap: 1rem; justify-content: flex-end; }
+        /* --- Improved Action Buttons --- */
+        .actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
         .action-btn {
-            background: none;
-            border: none;
+            background: transparent;
+            border: 1px solid var(--border-color);
             cursor: pointer;
-            padding: 5px;
-            opacity: 0.4;
-            transition: opacity 0.2s;
+            padding: 8px;
             color: var(--text-color);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .action-btn:hover { opacity: 1; }
-        .btn-delete:hover { color: #d73a49; }
+        .action-btn:hover { 
+            background: var(--text-color); 
+            color: var(--bg-color); 
+            border-color: var(--text-color);
+        }
+        
+        .btn-delete:hover { 
+            background: #d73a49; 
+            border-color: #d73a49; 
+            color: white; 
+        }
 
         @media (max-width: 768px) {
             .hide-mobile { display: none; }
-            .post-title { font-size: 0.9rem; }
+            .post-title { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -265,7 +305,9 @@
                 <span class="nav-group-title" style="margin:0">Library</span>
                 <h1>My Posts</h1>
             </div>
-            <a href="create_post.html" class="status-pill status-published" style="text-decoration: none; padding: 0.8rem 1.5rem; font-size: 0.7rem;">+ CREATE NEW</a>
+            <a href="create_post.html" class="btn-create">
+                <i data-lucide="plus" style="width:16px"></i> Create New
+            </a>
         </div>
 
         <div class="filter-bar">
@@ -280,7 +322,7 @@
                     <tr>
                         <th>Article</th>
                         <th class="hide-mobile">Status</th>
-                        <th class="hide-mobile">Reads</th>
+                        <th class="hide-mobile">Stats</th>
                         <th style="text-align: right;">Actions</th>
                     </tr>
                 </thead>
@@ -291,12 +333,17 @@
                             <div class="post-meta">Philosophy • Published 2h ago</div>
                         </td>
                         <td class="hide-mobile"><span class="status-pill status-published">Published</span></td>
-                        <td class="hide-mobile">1,204</td>
+                        <td class="hide-mobile">
+                            <div class="post-stats">
+                                <span class="stat-item">1,240 Words</span>
+                                <span class="stat-item">6 Min Read</span>
+                            </div>
+                        </td>
                         <td>
                             <div class="actions">
-                                <button class="action-btn"><i data-lucide="bar-chart-2"></i></button>
-                                <button class="action-btn"><i data-lucide="edit-3"></i></button>
-                                <button class="action-btn btn-delete"><i data-lucide="trash-2"></i></button>
+                                <button class="action-btn" title="Analytics"><i data-lucide="bar-chart-2" style="width:16px"></i></button>
+                                <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
+                                <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -306,12 +353,17 @@
                             <div class="post-meta">Architecture • Edited Yesterday</div>
                         </td>
                         <td class="hide-mobile"><span class="status-pill status-draft">Draft</span></td>
-                        <td class="hide-mobile">—</td>
+                        <td class="hide-mobile">
+                            <div class="post-stats">
+                                <span class="stat-item">450 Words</span>
+                                <span class="stat-item">2 Min Read</span>
+                            </div>
+                        </td>
                         <td>
                             <div class="actions">
-                                <button class="action-btn"><i data-lucide="eye"></i></button>
-                                <button class="action-btn"><i data-lucide="edit-3"></i></button>
-                                <button class="action-btn btn-delete"><i data-lucide="trash-2"></i></button>
+                                <button class="action-btn" title="Preview"><i data-lucide="eye" style="width:16px"></i></button>
+                                <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
+                                <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
                             </div>
                         </td>
                     </tr>
