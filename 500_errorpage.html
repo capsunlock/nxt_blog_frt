@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 — System Halt</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .error-container {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-code {
+            font-size: clamp(8rem, 25vw, 18rem);
+            font-weight: 900;
+            line-height: 0.8;
+            letter-spacing: -0.05em;
+            margin: 0;
+            color: var(--text-color);
+            opacity: 0.08;
+            position: absolute;
+            z-index: -1;
+        }
+        .error-message {
+            position: relative;
+            z-index: 1;
+        }
+        .error-message h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .error-message p {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            max-width: 40ch;
+            margin: 0 auto 2.5rem;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--text-color);
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="post_list.html">Articles</a>
+                <a href="archive.html">Series</a>
+                <a href="about.html">Manifesto</a>
+            </div>
+            <div class="nav-controls">
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="error-container">
+        <h1 class="error-code">500</h1>
+        <div class="error-message">
+            <h2>System Halt</h2>
+            <p>The server encountered an unexpected condition and failed to process the request. The logic circuit is temporarily interrupted.</p>
+            <a href="index.html" class="back-link">Attempt Recovery →</a>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

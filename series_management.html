@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series Management — Journal Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="admin-dashboard">
+
+    <aside class="sidebar">
+        <div class="sidebar-header"><span class="logo-text">JOURNAL</span></div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="dashboard.html" class="nav-link"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li class="nav-item"><a href="series_management.html" class="nav-link active"><i data-lucide="layers"></i> Series</a></li>
+                <li class="nav-item"><a href="settings.html" class="nav-link"><i data-lucide="settings"></i> Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-stage">
+        <header class="admin-header">
+            <h1>Series Index</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="open-series-modal"><i data-lucide="plus"></i> New Series</button>
+            </div>
+        </header>
+
+        <section class="series-grid" id="series-container">
+            <div class="empty-state">No series defined in system.</div>
+        </section>
+    </main>
+
+    <div id="series-modal" class="admin-modal">
+        <div class="modal-content">
+            <h2 class="section-title">Initialize New Series</h2>
+            <div class="form-group">
+                <label>Series Name</label>
+                <input type="text" id="series-name" placeholder="e.g. CSS Architecture">
+            </div>
+            <div class="form-group">
+                <label>Description (Short)</label>
+                <input type="text" id="series-desc" placeholder="A deep dive into grid and flexbox.">
+            </div>
+            <div class="modal-actions">
+                <button class="btn" id="close-modal">Cancel</button>
+                <button class="btn btn-primary" id="save-series">Create Entry</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/series.js"></script>
+</body>
+</html>

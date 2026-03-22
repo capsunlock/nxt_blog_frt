@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Journal Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="admin-dashboard">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-text">JOURNAL</span>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link active">
+                        <i data-lucide="layout-dashboard"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="create_post.html" class="nav-link">
+                        <i data-lucide="plus-square"></i> New Post
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link secondary">
+                        <i data-lucide="external-link"></i> View Site
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-stage">
+        <header class="admin-header">
+            <h1>System Overview</h1>
+            <div class="header-actions">
+                <button class="btn btn-icon" id="theme-toggle"><i data-lucide="moon"></i></button>
+                <a href="create_post.html" class="btn btn-primary">Create New Post</a>
+            </div>
+        </header>
+
+        <section class="analytics-overview">
+            <div class="stat-card">
+                <span class="stat-label">Total Volume</span>
+                <div class="stat-value"><span id="total-word-count">0</span> <small>WORDS</small></div>
+                <div class="stat-sub">Across all local drafts</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Consumption Time</span>
+                <div class="stat-value"><span id="total-read-time">0</span> <small>MINS</small></div>
+                <div class="stat-sub">Estimated reading duration</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Index Count</span>
+                <div class="stat-value" id="total-posts-count">0</div>
+                <div class="stat-sub">Active records found</div>
+            </div>
+        </section>
+
+        <section class="management-section">
+            <div class="table-controls">
+                <h2 class="section-title">Post Index</h2>
+            </div>
+            
+            <div class="management-table">
+                <div class="table-header">
+                    <span>Title & Origin</span>
+                    <span>Status</span>
+                    <span>Metrics</span>
+                    <span style="text-align: right;">Actions</span>
+                </div>
+                <div id="post-list-container">
+                    <div class="empty-state">No records found in local storage.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/admin.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

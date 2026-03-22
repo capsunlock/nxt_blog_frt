@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — Journal Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="admin-dashboard">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span class="logo-text">JOURNAL</span>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link">
+                        <i data-lucide="layout-dashboard"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link active">
+                        <i data-lucide="settings"></i> Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link secondary">
+                        <i data-lucide="external-link"></i> View Site
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-stage">
+        <header class="admin-header">
+            <h1>Global Config</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="save-settings">Save Changes</button>
+            </div>
+        </header>
+
+        <section class="settings-grid">
+            <div class="settings-card">
+                <h2 class="section-title">Identity</h2>
+                <div class="form-group">
+                    <label>Journal Title</label>
+                    <input type="text" id="site-title" placeholder="e.g. THE LOGIC INDEX">
+                </div>
+                <div class="form-group">
+                    <label>Author Alias</label>
+                    <input type="text" id="author-name" placeholder="Your Name">
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2 class="section-title">Social Links</h2>
+                <div class="form-group">
+                    <label>X / Twitter</label>
+                    <input type="url" id="social-x" placeholder="https://x.com/username">
+                </div>
+                <div class="form-group">
+                    <label>GitHub</label>
+                    <input type="url" id="social-github" placeholder="https://github.com/username">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/settings.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
