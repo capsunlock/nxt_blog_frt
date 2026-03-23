@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/tag.css">
+</head>
+<body>
+
+    <div class="progress-container"><div class="progress-bar"></div></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-links">
+                <a href="index.html">Feed</a>
+                <a href="categories.html">Categories</a>
+                <a href="tags.html" style="opacity: 1; color: var(--accent-color);">Tags</a>
+            </div>
+            <div class="nav-controls">
+                <button id="theme-toggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header class="page-intro">
+            <h1 style="font-size: 3rem; font-weight: 800;">Tags</h1>
+            <p style="color: var(--secondary-text);">Granular index of specific themes and keywords.</p>
+        </header>
+
+        <section class="tag-cloud" id="tag-container">
+            <div class="loading">Mapping metadata...</div>
+        </section>
+    </main>
+
+    <div id="custom-cursor"></div>
+
+    <script src="js/script.js"> </script>
+    <script src="js/tag.js"></script>
+</body>
+</html>

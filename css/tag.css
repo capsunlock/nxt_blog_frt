@@ -1,0 +1,135 @@
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.tag-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 100px; /* Perfect pill shape */
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.tag-item:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: scale(1.05);
+    background: rgba(0, 123, 255, 0.05);
+}
+
+[data-theme="dark"] .tag-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tag-count {
+    margin-left: 8px;
+    font-size: 0.7rem;
+    opacity: 0.4;
+    font-weight: 800;
+    font-family: monospace;
+}
+
+.page-intro {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+
+/* --- Refined Public Post Card --- */
+.public-post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.public-post-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.public-post-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .public-post-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Card Content & Tags --- */
+.card-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0.5rem 0 1rem 0;
+    letter-spacing: -0.5px;
+}
+
+.card-metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+}
+
+.card-tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto; /* Pushes tags to the bottom */
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.mini-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 50px;
+    color: var(--secondary-text);
+    transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .mini-tag {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.public-post-card:hover .mini-tag {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
