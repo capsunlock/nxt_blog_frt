@@ -1,0 +1,232 @@
+* { box-sizing: border-box; }
+
+:root {
+    --sidebar-width: 260px;
+    --admin-bg: #f9f9f9;
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --border-color: #e0e0e0;
+    --danger-color: #e63946;
+}
+
+[data-theme="dark"] { 
+    --admin-bg: #0a0a0a; 
+    --bg-color: #111111;
+    --text-color: #eeeeee;
+    --border-color: #333333;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--admin-bg);
+    color: var(--text-color);
+    margin: 0;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background 0.3s ease;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-color);
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    height: 100vh;
+    z-index: 2000;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-bottom: 1.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 800;
+}
+
+.nav-link.secondary {
+    opacity: 0.5;
+}
+
+/* --- Layout --- */
+.main-stage { 
+    margin-left: var(--sidebar-width); 
+    flex-grow: 1; 
+    padding: 2rem 5% 12rem; 
+    width: calc(100% - var(--sidebar-width));
+}
+
+.editor-container { max-width: 1100px; margin: 0 auto; width: 100%; }
+
+/* --- Header & Hero --- */
+.editor-header { position: relative; }
+
+.btn-clear {
+    position: absolute; top: 0; right: 0;
+    background: transparent; border: 1px solid var(--border-color);
+    color: var(--text-color); padding: 6px 12px; font-size: 0.6rem;
+    font-weight: 800; text-transform: uppercase; cursor: pointer;
+    opacity: 0.3; transition: 0.2s; display: flex; align-items: center; gap: 4px;
+}
+.btn-clear:hover { opacity: 1; color: var(--danger-color); border-color: var(--danger-color); }
+
+.post-title-input, .post-subtitle-input {
+    width: 100%; background: transparent; border: none;
+    color: var(--text-color); outline: none; resize: none; line-height: 1.2;
+}
+.post-title-input { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 0.5rem; padding-right: 80px; }
+.post-subtitle-input { font-size: 1.5rem; opacity: 0.6; margin-bottom: 2rem; }
+
+.hero-upload-zone {
+    width: 100%; height: 250px; background: var(--bg-color);
+    border: 2px dashed var(--border-color); margin-bottom: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; position: relative; overflow: hidden;
+}
+.hero-upload-zone img { width: 100%; height: 100%; object-fit: cover; }
+.hero-placeholder { text-align: center; opacity: 0.4; text-transform: uppercase; font-size: 0.7rem; font-weight: 800; }
+
+/* --- Meta Fields --- */
+.post-meta-fields { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem; border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem; margin-bottom: 2rem; 
+}
+.meta-field { display: flex; flex-direction: column; gap: 4px; }
+.meta-label { font-size: 0.6rem; text-transform: uppercase; font-weight: 800; opacity: 0.5; cursor: pointer; }
+.meta-input { background: none; border: none; font-size: 0.85rem; font-weight: 700; color: var(--text-color); outline: none; }
+
+/* --- Editor Split --- */
+.editor-split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.editor-body { 
+    width: 100%; min-height: 500px; background: transparent; border: none;
+    font-size: 1.1rem; line-height: 1.7; color: var(--text-color);
+    outline: none; resize: none; font-family: 'Courier New', monospace;
+}
+.preview-pane { border-left: 1px solid var(--border-color); padding-left: 2rem; }
+.preview-pane figure { margin: 2rem 0; text-align: center; }
+.preview-pane figure img { max-width: 100%; height: auto; border: 1px solid var(--border-color); }
+.preview-pane figcaption { margin-top: 0.8rem; font-size: 0.9rem; opacity: 0.6; font-style: italic; }
+
+/* --- Toolbar --- */
+.editor-toolbar {
+    position: fixed; bottom: 1.5rem; left: calc(var(--sidebar-width) + 1.5rem);
+    right: 1.5rem; background: var(--bg-color); border: 2px solid var(--border-color);
+    padding: 0.8rem 1.2rem; display: flex; justify-content: space-between;
+    align-items: center; z-index: 3000; box-shadow: 6px 6px 0px var(--border-color);
+}
+
+.toolbar-section { display: flex; align-items: center; gap: 12px; }
+
+.btn {
+    background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);
+    padding: 0.6rem 1rem; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+}
+.btn-primary { background: var(--text-color); color: var(--bg-color); }
+.btn-icon { padding: 0.6rem; }
+
+/* Mobile Optimization for Editor Toolbar */
+@media (max-width: 600px) {
+    .editor-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem; /* Tighten vertical padding */
+        gap: 0.5rem;
+    }
+
+    .toolbar-section {
+        display: flex;
+        align-items: center;
+        gap: 4px; /* Significantly reduce the gap between buttons */
+    }
+
+    /* Hide button text on mobile to keep icons only */
+    .btn-text {
+        display: none;
+    }
+
+    /* Optional: Hide the word count/read time stats on very small screens 
+    if they are still causing crowding */
+    .toolbar-section div[style*="font-size: 0.6rem"] {
+        display: none; 
+    }
+
+    /* Make buttons slightly smaller for a tighter look */
+    .btn {
+        padding: 6px 8px;
+        min-width: auto;
+    }
+}
+
+/* --- Toast System --- */
+#toast-container { position: fixed; bottom: 7rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast { 
+    background: var(--text-color); color: var(--bg-color); padding: 1rem 1.5rem;
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 12px;
+    transform: translateX(120%); opacity: 0; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.toast.show { transform: translateX(0); opacity: 1; }
+
+@media (max-width: 1024px) {
+    .sidebar { display: none; }
+    .main-stage { margin-left: 0; width: 100%; }
+    .editor-toolbar { left: 1rem; right: 1rem; }
+    .editor-split { grid-template-columns: 1fr; }
+}
+
+/* --- Mobile Toggle Logic --- */
+.mobile-only-toggle {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .mobile-only-toggle {
+        display: flex;
+    }
+
+    /* Hide preview by default on mobile */
+    #pane-preview {
+        display: none;
+        border-left: none;
+        padding-left: 0;
+    }
+
+    /* When the container has the 'show-preview' class, swap visibility */
+    .editor-container.show-preview #pane-write {
+        display: none;
+    }
+
+    .editor-container.show-preview #pane-preview {
+        display: block;
+    }
+}
+/* --- Series Toggle Styling --- */
+#is-series-toggle {
+    accent-color: var(--text-color);
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+
+#post-series {
+    border-bottom: 1px solid var(--border-color);
+    padding: 2px 0;
+    appearance: none; /* Removes default browser arrow for a cleaner look */
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'%3e%3c/path%3e%3c/svg%3e") no-repeat right center;
+    background-size: 12px;
+}
