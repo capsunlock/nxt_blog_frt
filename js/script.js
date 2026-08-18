@@ -114,3 +114,67 @@ window.onscroll = function() {
 document.getElementById("backToTop")?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+(function initDemoData() {
+    if (!localStorage.getItem('journal_posts')) {
+        const demoPosts = [
+            {
+                slug: 'minimalist-structures',
+                title: 'Minimalist Structures & The Digital Void',
+                subtitle: 'Exploring how brutalist physical forms influence the architecture of our modern digital interfaces.',
+                body: '<p>The intersection of physical space and digital boundaries has never been more blurred. As we navigate through environments designed to minimize friction, we find ourselves echoing the sentiments of the mid-century modernists.</p><p>Architecture is not just about the walls that hold a roof, but the space created between them. In web design, we often refer to this as "negative space," yet it serves the exact same purpose: to provide the eye with a place to rest.</p>',
+                category: 'Architecture',
+                tags: ['Brutalism', 'Design', 'Architecture'],
+                date: '2026-03-14',
+                heroImage: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1600',
+                author: 'Elena Vance'
+            },
+            {
+                slug: 'art-of-less',
+                title: 'The Art of Less: Why Simplification Wins',
+                subtitle: 'Why users value room to breathe over features.',
+                body: '<p>In a world of infinite features, the bravest design choice is often to remove. Simplification is not about deprivation—it is about intention. Every element that remains must earn its place.</p>',
+                category: 'Strategy',
+                tags: ['Minimalism', 'UX', 'Design'],
+                date: '2026-03-10',
+                heroImage: 'https://images.unsplash.com/photo-1512446813987-060361ca11bc?auto=format&fit=crop&w=1600',
+                author: 'Elena Vance'
+            },
+            {
+                slug: 'typography-rhythm',
+                title: 'Typography Rhythm in Modern Layouts',
+                subtitle: 'How font choices shape user perception.',
+                body: '<p>Typography is not just about readability—it is about rhythm. The space between letters, the weight of strokes, the flow from one line to the next: all of these create a tempo that guides the reader through the content.</p>',
+                category: 'Typography',
+                tags: ['Typography', 'Design', 'CSS'],
+                date: '2026-03-05',
+                heroImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600',
+                author: 'Elena Vance'
+            }
+        ];
+        localStorage.setItem('journal_posts', JSON.stringify(demoPosts));
+    }
+
+    if (!localStorage.getItem('journal_authors')) {
+        const demoAuthors = [
+            { id: 1, name: 'Elena Vance', role: 'Design Editor', bio: 'Design Editor & Architectural Historian based in Berlin. Exploring the tension between brutalist heritage and digital futures.', avatar: 'https://i.pravatar.cc/150?u=editor' }
+        ];
+        localStorage.setItem('journal_authors', JSON.stringify(demoAuthors));
+    }
+
+    if (!localStorage.getItem('journal_series')) {
+        const demoSeries = [
+            { id: 1, name: 'Minimalist Structures', desc: 'A deep dive into brutalism and digital design.', postCount: 2 },
+            { id: 2, name: 'Design Philosophy', desc: 'Exploring the why behind great design.', postCount: 1 }
+        ];
+        localStorage.setItem('journal_series', JSON.stringify(demoSeries));
+    }
+
+    if (!localStorage.getItem('journal_comments')) {
+        const demoComments = [
+            { id: 1, postTitle: 'Minimalist Structures & The Digital Void', author: 'Reader One', text: 'Beautifully written. This resonated deeply.', status: 'approved', date: '2026-03-15' },
+            { id: 2, postTitle: 'The Art of Less: Why Simplification Wins', author: 'Designer X', text: 'Would love to see a follow-up on color theory.', status: 'pending', date: '2026-03-11' }
+        ];
+        localStorage.setItem('journal_comments', JSON.stringify(demoComments));
+    }
+})();

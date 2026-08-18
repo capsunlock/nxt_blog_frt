@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Comments — Journal Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/comments_management.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">JOURNAL</a>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <span class="nav-group-title">Content</span>
+                <a href="dashboard_home.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
+                <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
+                <a href="post_list.html" class="sidebar-link"><i data-lucide="list"></i> All Posts</a>
+                <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">Moderation</span>
+                <a href="comments_management.html" class="sidebar-link active"><i data-lucide="message-square"></i> Comments</a>
+                <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">Organization</span>
+                <a href="series_management.html" class="sidebar-link"><i data-lucide="layers"></i> Series</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">System</span>
+                <a href="author_profile.html" class="sidebar-link"><i data-lucide="user"></i> My Profile</a>
+                <a href="settings.html" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+                <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <main class="main-stage">
+        
+        <button class="mobile-nav-toggle" id="menu-toggle">
+            <i data-lucide="menu"></i>
+        </button>
+
+        <header class="comments-header">
+            <h1>Comments Management</h1>
+            <div class="filter-controls">
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Comments</option>
+                    <option value="pending">Pending Review</option>
+                    <option value="approved">Approved</option>
+                    <option value="spam">Spam</option>
+                </select>
+                <input type="text" id="searchFilter" class="search-input" placeholder="Search comments...">
+            </div>
+        </header>
+
+        <section class="comments-list" id="commentsList">
+            <div class="empty-state">
+                <i data-lucide="message-square"></i>
+                <p>No comments yet.</p>
+            </div>
+        </section>
+
+        <!-- Comment Detail Modal -->
+        <div class="modal" id="commentModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Comment Details</h2>
+                    <button class="close-btn" onclick="closeCommentModal()">×</button>
+                </div>
+
+                <div class="comment-detail" id="commentDetail">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="approveComment()">
+                        <i data-lucide="check"></i> Approve
+                    </button>
+                    <button class="btn btn-secondary" onclick="rejectComment()">
+                        <i data-lucide="x"></i> Reject
+                    </button>
+                    <button class="btn btn-danger" onclick="markSpam()">
+                        <i data-lucide="alert-triangle"></i> Mark as Spam
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script src="js/comments_management.js"></script>
+</body>
+</html>

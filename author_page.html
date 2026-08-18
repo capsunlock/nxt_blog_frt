@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Profile — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/author_page.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-controls">
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        <article class="author-page-container">
+            <header class="author-hero">
+                <div class="author-hero-content">
+                    <img id="authorAvatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200" alt="Author" class="author-avatar-large">
+                    
+                    <div class="author-info-main">
+                        <h1 id="authorName">Author Name</h1>
+                        <p class="author-role" id="authorRole">Writer & Thinker</p>
+                        
+                        <p class="author-bio" id="authorBio">
+                            Exploring the intersection of technology, design, and human experience.
+                        </p>
+
+                        <div class="author-social" id="authorSocial">
+                            <!-- Social links populated by JS -->
+                        </div>
+
+                        <div class="author-meta">
+                            <span class="meta-item">
+                                <i data-lucide="file-text"></i>
+                                <strong id="postCount">0</strong> Articles
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Member since <span id="joinDate">2026</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="author-posts author-section">
+                <div class="section-header">
+                    <h2>Published Works</h2>
+                    <span class="section-count" id="postCount">0</span>
+                </div>
+                <div id="authorPostsGrid">
+                    <div class="empty-state">Loading articles...</div>
+                </div>
+            </section>
+
+            <section class="author-series author-section" id="authorSeriesSection">
+                <div class="section-header">
+                    <h2>Series by This Author</h2>
+                </div>
+                <div id="authorSeriesList">
+                    <div class="empty-state">Loading series...</div>
+                </div>
+            </section>
+
+            <section class="subscribe-cta author-section">
+                <h3>Follow This Author</h3>
+                <p>Get notified when they publish new articles</p>
+                <form class="subscribe-form" id="followForm">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div id="footer-credits">© 2026 — Journal</div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/author_page.js"></script>
+</body>
+</html>

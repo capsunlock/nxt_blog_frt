@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tag.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-controls">
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        <div class="tag-container">
+            <header class="tag-header">
+                <h1 id="tagTitle">Tag</h1>
+                <p id="tagDescription">Posts tagged with</p>
+                <div class="tag-badge" id="tagBadge">#tag</div>
+            </header>
+
+            <section class="tag-posts" id="tagPostsGrid">
+                <div class="loading-state">Loading posts...</div>
+            </section>
+
+            <section class="related-tags">
+                <h2>Related Tags</h2>
+                <div class="tags-list" id="relatedTagsList">
+                    <div class="loading-state">Loading tags...</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div id="footer-credits">© 2026 — Journal</div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/tag.js"></script>
+</body>
+</html>

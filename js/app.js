@@ -58,7 +58,7 @@ function renderPublicPosts() {
 
     filteredPosts.forEach(post => {
         const card = document.createElement('a');
-        card.href = `post.html?slug=${post.slug}`;
+        card.href = `blog_post.html?slug=${post.slug}`;
         card.className = 'public-post-card';
         card.innerHTML = `
             ${post.heroImage ? `<img src="${post.heroImage}" class="card-image" alt="${post.title}">` : ''}

@@ -1,0 +1,10 @@
+{
+  "name": "journal-blog-frontend",
+  "version": "1.0.0",
+  "description": "Static frontend prototype for Journal multi-author blog platform",
+  "scripts": {
+    "start": "echo 'Open index.html in a browser to view the site'"
+  },
+  "keywords": ["blog", "frontend", "prototype"],
+  "license": "MIT"
+}

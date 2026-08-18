@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/newsletter.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-controls">
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        <div class="newsletter-container">
+            <section class="newsletter-hero">
+                <h1>Weekly Digest</h1>
+                <p>Curated essays on web architecture, minimalism, and digital philosophy — delivered to your inbox every week.</p>
+            </section>
+
+            <section class="newsletter-signup">
+                <form id="newsletterForm" class="newsletter-form">
+                    <div class="input-group">
+                        <input 
+                            type="email" 
+                            id="newsletter-email" 
+                            name="email" 
+                            placeholder="Enter your email" 
+                            required
+                        >
+                        <button type="submit" class="subscribe-btn">
+                            <i data-lucide="send" style="width: 16px;"></i> Subscribe
+                        </button>
+                    </div>
+                    <p class="newsletter-notice">No spam, ever. Unsubscribe anytime.</p>
+                    <div class="form-status" id="newsletterStatus"></div>
+                </form>
+
+                <div class="newsletter-preview">
+                    <h3>What You'll Get</h3>
+                    <ul class="preview-list">
+                        <li><i data-lucide="check"></i> Deep dives into web design patterns</li>
+                        <li><i data-lucide="check"></i> Case studies and architecture breakdowns</li>
+                        <li><i data-lucide="check"></i> Curated links and resources</li>
+                        <li><i data-lucide="check"></i> Behind-the-scenes insights</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="newsletter-stats">
+                <div class="stat">
+                    <span class="stat-number">2.4k</span>
+                    <span class="stat-label">Subscribers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">52</span>
+                    <span class="stat-label">Issues Delivered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">38%</span>
+                    <span class="stat-label">Open Rate</span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div id="footer-credits">© 2026 — Journal</div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/newsletter.js"></script>
+</body>
+</html>

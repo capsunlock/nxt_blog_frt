@@ -31,9 +31,13 @@ function renderSeries() {
     const container = document.getElementById('series-container');
     const seriesList = JSON.parse(localStorage.getItem('journal_series') || '[]');
 
-    if (seriesList.length === 0) return;
-
     container.innerHTML = '';
+
+    if (seriesList.length === 0) {
+        container.innerHTML = '<div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem; opacity: 0.5;"><p>No series found in local storage.</p></div>';
+        return;
+    }
+
     seriesList.forEach(s => {
         const card = document.createElement('div');
         card.className = 'series-card';

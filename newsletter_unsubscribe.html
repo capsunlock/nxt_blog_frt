@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/newsletter.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JOURNAL</a>
+            <div class="nav-controls">
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper">
+        <div class="unsub-container">
+            <div class="unsub-card">
+                <div class="unsub-icon">
+                    <i data-lucide="mail-x"></i>
+                </div>
+                
+                <h1>Unsubscribe</h1>
+                <p>We'll miss you. If you want to leave the list, confirm below.</p>
+
+                <form id="unsubForm" class="unsub-form">
+                    <div class="form-group">
+                        <label for="unsub-email">Email Address</label>
+                        <input type="email" id="unsub-email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="unsub-reasons">
+                        <label>Tell us why (optional)</label>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="reason" value="too-frequent">
+                                <span>Emails are too frequent</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="reason" value="not-relevant">
+                                <span>Not relevant to me</span>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="reason" value="other">
+                                <span>Other reason</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="unsub-btn">Confirm Unsubscribe</button>
+                    <a href="index.html" class="go-back">← Back to Journal</a>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div id="footer-credits">© 2026 — Journal</div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/newsletter.js"></script>
+</body>
+</html>

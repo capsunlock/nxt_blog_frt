@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories — Journal</title>
+    <title>Series — Journal</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/series_management.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -18,8 +18,8 @@
             
             <div class="nav-links" id="nav-links">
                 <a href="index.html">Feed</a>
-                <a href="series.html">Series</a>
-                <a href="categories.html" style="opacity: 1; color: var(--accent-color);">Categories</a>
+                <a href="series.html" style="opacity: 1; color: var(--accent-color);">Series</a>
+                <a href="categories.html">Categories</a>
                 <a href="about.html">About</a>
             </div>
 
@@ -38,17 +38,40 @@
 
     <main class="content">
         <header class="page-header">
-            <h1>Browse by Topic</h1>
-            <p>Select a category to filter the journal entries.</p>
+            <h1>Series</h1>
+            <p>Browse our curated collections and deep dives.</p>
         </header>
 
-        <section class="category-grid" id="category-container">
-            <div class="loading">Analyzing local records...</div>
+        <button id="open-series-modal" class="btn btn-primary" style="margin-bottom: 2rem;">+ New Series</button>
+
+        <section class="series-grid" id="series-container">
+            <div class="loading">Loading series...</div>
         </section>
     </main>
 
+    <div id="series-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Series</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="series-form">
+                <div class="form-group">
+                    <label>Series Name</label>
+                    <input type="text" id="series-name">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="series-desc"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="save-series">Save Series</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
-    <script src="js/categories.js">
-    </script>
+    <script src="js/series.js"></script>
 </body>
 </html>

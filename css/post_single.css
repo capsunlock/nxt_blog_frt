@@ -32,6 +32,21 @@
 }
 
 /* --- Author Header (Top) --- */
+.post-author-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.post-author-link:hover .post-author {
+    opacity: 0.8;
+}
+
+.post-author-link:hover .author-img {
+    filter: grayscale(0%);
+}
+
 .post-author {
     display: flex;
     align-items: center;
@@ -46,6 +61,7 @@
     border-radius: 50%;
     object-fit: cover;
     filter: grayscale(100%);
+    transition: filter 0.2s ease;
 }
 
 .author-info {
