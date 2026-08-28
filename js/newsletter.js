@@ -46,7 +46,7 @@ document.getElementById('unsubForm')?.addEventListener('submit', (e) => {
     localStorage.setItem('journal_subscribers', JSON.stringify(subscribers));
     
     // Redirect
-    document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh;"><div style="text-align: center;"><h1>Unsubscribed</h1><p>You have been removed from our newsletter.</p><a href="index.html" style="color: var(--accent-color); text-decoration: underline;">Back to Journal</a></div></div>';
+    document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh;"><div style="text-align: center;"><h1>Unsubscribed</h1><p>You have been removed from our newsletter.</p><a href="post_list.html" style="color: var(--accent-color); text-decoration: underline;">Back to Journal</a></div></div>';
 });
 
 function showStatus(message, type, element) {

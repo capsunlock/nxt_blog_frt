@@ -12,12 +12,17 @@
 
         <aside class="sidebar">
             <div class="sidebar-header">
-                <a href="index.html" class="logo">JOURNAL</a>
+                <a href="post_list.html" class="logo">JOURNAL</a>
+                <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-group">
                     <span class="nav-group-title">Content</span>
-                    <a href="dashboard_home.html" class="sidebar-link active"><i data-lucide="layout-dashboard"></i> Overview</a>
+                    <a href="dashboard_home.html" class="sidebar-link active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    <a href="dashboard.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
                     <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
                     <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
                     <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
@@ -29,6 +34,7 @@
                 </div>
                 <div class="nav-group">
                     <span class="nav-group-title">System</span>
+                    <a href="post_list.html" class="sidebar-link"><i data-lucide="external-link"></i> View Site</a>
                     <a href="#" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
                     <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
                 </div>
@@ -37,13 +43,12 @@
 
         <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-        <main class="main-stage">
-            
-            <button class="mobile-nav-toggle" id="menu-toggle">
-                <i data-lucide="menu"></i>
-            </button>
-            
-            <header class="dash-header" id="profile-header">
+    <main class="main-stage">
+        <button class="mobile-nav-toggle" id="menu-toggle">
+            <i data-lucide="menu"></i>
+        </button>
+        
+        <header class="dash-header" id="profile-header">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400" alt="Marcus" class="author-img">
                 
                 <div class="author-info">
@@ -56,14 +61,17 @@
                     <textarea class="edit-field dash-textarea" id="input-bio" rows="3">Writer and philosopher focusing on digital minimalism and the intersection of human logic with algorithmic architecture.</textarea>
 
                     <div class="author-links view-field" id="display-links">
-                        <a href="#">Twitter</a> / <a href="#">Newsletter</a> / <a href="#">RSS</a>
+                        <a href="#" id="display-twitter">Twitter</a> / <a href="#" id="display-newsletter">Newsletter</a> / <a href="#" id="display-rss">RSS</a>
                     </div>
                     <div class="edit-field">
-                        <input type="text" class="dash-input" id="input-links" value="Twitter, Newsletter, RSS" placeholder="Comma separated links">
+                        <input type="text" class="dash-input" id="input-twitter" value="https://twitter.com/username" placeholder="Twitter / X URL">
+                        <input type="text" class="dash-input" id="input-newsletter" value="https://newsletter.example.com" placeholder="Newsletter URL">
+                        <input type="text" class="dash-input" id="input-rss" value="https://example.com/feed.xml" placeholder="RSS Feed URL">
                     </div>
                 </div>
 
                 <div class="header-actions">
+                    <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
                     <button class="edit-btn edit-trigger-btn" onclick="toggleEditMode()">
                         <i data-lucide="edit-3"></i> Edit Profile
                     </button>
@@ -113,7 +121,15 @@
             </section>
         </main>
 
-        <script src="js/script.js"></script>
+        <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
         <script src="js/dashboard_home.js"></script>
     </body>
 </html>

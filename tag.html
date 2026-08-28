@@ -14,13 +14,19 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">JOURNAL</a>
-            <div class="nav-links">
-                <a href="index.html">Feed</a>
+            <a href="post_list.html" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="post_list.html">Feed</a>
+                <a href="archive.html">Series</a>
                 <a href="categories.html">Categories</a>
-                <a href="tag.html" style="opacity: 1; color: var(--accent-color);">Tags</a>
+                <a href="about.html">Manifesto</a>
             </div>
             <div class="nav-controls">
+                <button id="mobile-menu" class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+                <button id="search-btn"><i data-lucide="search"></i></button>
                 <button id="theme-toggle"><span class="sun-icon">☀️</span><span class="moon-icon">🌙</span></button>
             </div>
         </div>
@@ -28,19 +34,45 @@
 
     <main class="content">
         <header class="page-intro">
-            <h1 style="font-size: 3rem; font-weight: 800;">Tags</h1>
-            <p style="color: var(--secondary-text);">Granular index of specific themes and keywords.</p>
+            <h1>Tags</h1>
+            <p>Granular index of specific themes and keywords.</p>
         </header>
 
         <section class="tag-cloud" id="tag-container">
             <div class="loading">Mapping metadata...</div>
         </section>
+
+        <div id="filtered-view" style="display: none;">
+            <header class="tag-header">
+                <h1 id="tagTitle">Tag</h1>
+                <p id="tagDescription">Posts tagged with</p>
+                <div class="tag-badge" id="tagBadge">#tag</div>
+            </header>
+
+            <section class="tag-posts" id="tagPostsGrid">
+                <div class="loading-state">Loading posts...</div>
+            </section>
+
+            <section class="related-tags">
+                <h2>Related Tags</h2>
+                <div class="tags-list" id="relatedTagsList">
+                    <div class="loading-state">Loading tags...</div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <div id="custom-cursor"></div>
 
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
     <script src="js/tag.js"></script>
-    <script src="js/app.js"></script>
 </body>
 </html>

@@ -12,22 +12,43 @@
 <body>
 
     <aside class="sidebar">
-        <div style="padding: 2rem; border-bottom: 1px solid var(--border-color);">
-            <span style="font-weight: 900; letter-spacing: -1px;">JOURNAL</span>
+        <div class="sidebar-header">
+                <a href="post_list.html" class="logo">JOURNAL</a>
+                <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
         </div>
-        <nav style="padding: 2rem;">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i data-lucide="plus-square"></i> New Post</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link secondary"><i data-lucide="file-text"></i> My Posts</a>
-                </li>
-            </ul>
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <span class="nav-group-title">Content</span>
+                    <a href="dashboard_home.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    <a href="dashboard.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
+                <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
+                <a href="create_post.html" class="sidebar-link active"><i data-lucide="plus-square"></i> New Post</a>
+                <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">Analytics</span>
+                <a href="#" class="sidebar-link"><i data-lucide="bar-chart-3"></i> Traffic</a>
+                <a href="#" class="sidebar-link"><i data-lucide="users"></i> Subscribers</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">System</span>
+                <a href="post_list.html" class="sidebar-link"><i data-lucide="external-link"></i> View Site</a>
+                <a href="settings.html" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+                <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
+            </div>
         </nav>
     </aside>
 
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <main class="main-stage">
+        <button class="mobile-nav-toggle" id="menu-toggle">
+            <i data-lucide="menu"></i>
+        </button>
+
         <div class="editor-container">
             <header class="editor-header">
                 <button class="btn-clear" id="btn-reset"><i data-lucide="trash-2" style="width:12px"></i> Clear Draft</button>
@@ -81,7 +102,7 @@
 
         <div class="editor-toolbar">
             <div class="toolbar-section">
-                <button class="btn btn-icon" id="theme-switcher"><i data-lucide="moon" id="theme-icon" style="width:16px"></i></button>
+                <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
                 <button class="btn btn-icon mobile-only-toggle" id="mobile-preview-toggle" title="Toggle Preview">
                     <i data-lucide="eye" style="width:16px"></i>
                 </button>
@@ -119,7 +140,15 @@
             </div>
         </div>
 
-        <div id="toast-container"></div>
+        <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
     </main>
 
     <script src="js/script.js"></script>

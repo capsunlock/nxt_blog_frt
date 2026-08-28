@@ -12,34 +12,51 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <span class="logo-text">JOURNAL</span>
+            <a href="post_list.html" class="logo">JOURNAL</a>
+            <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
         </div>
         <nav class="sidebar-nav">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="dashboard.html" class="nav-link active">
-                        <i data-lucide="layout-dashboard"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="create_post.html" class="nav-link">
-                        <i data-lucide="plus-square"></i> New Post
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link secondary">
-                        <i data-lucide="external-link"></i> View Site
-                    </a>
-                </li>
-            </ul>
+            <div class="nav-group">
+                <span class="nav-group-title">Content</span>
+                <a href="dashboard_home.html" class="sidebar-link active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="dashboard.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
+                <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
+                <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
+                <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">Management</span>
+                <a href="comments_management.html" class="sidebar-link"><i data-lucide="message-square"></i> Comments</a>
+                <a href="series_management.html" class="sidebar-link"><i data-lucide="layers"></i> Series</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">Analytics</span>
+                <a href="#" class="sidebar-link"><i data-lucide="bar-chart-3"></i> Traffic</a>
+                <a href="#" class="sidebar-link"><i data-lucide="users"></i> Subscribers</a>
+            </div>
+            <div class="nav-group">
+                <span class="nav-group-title">System</span>
+                <a href="post_list.html" class="sidebar-link"><i data-lucide="external-link"></i> View Site</a>
+                <a href="settings.html" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+                <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
+            </div>
         </nav>
     </aside>
 
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <main class="main-stage">
+        <button class="mobile-nav-toggle" id="menu-toggle">
+            <i data-lucide="menu"></i>
+        </button>
+
         <header class="admin-header">
             <h1>System Overview</h1>
             <div class="header-actions">
-                <button class="btn btn-icon" id="theme-toggle"><i data-lucide="moon"></i></button>
+                <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
                 <a href="create_post.html" class="btn btn-primary">Create New Post</a>
             </div>
         </header>
@@ -81,7 +98,15 @@
         </section>
     </main>
 
-    <script src="js/admin.js"></script>
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>

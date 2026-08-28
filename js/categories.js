@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Render Cards
     Object.keys(categories).sort().forEach(cat => {
         const card = document.createElement('a');
-        card.href = `index.html?filter=${encodeURIComponent(cat)}`;
+        card.href = `post_list.html?filter=${encodeURIComponent(cat)}`;
         card.className = 'category-card';
         card.innerHTML = `
             <span class="count">${categories[cat]} Posts</span>

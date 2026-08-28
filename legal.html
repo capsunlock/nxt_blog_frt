@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal — Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/legal.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="post_list.html" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="post_list.html">Feed</a>
+                <a href="archive.html">Series</a>
+                <a href="categories.html">Categories</a>
+                <a href="about.html">Manifesto</a>
+            </div>
+            <div class="nav-controls">
+                <button id="mobile-menu" class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+                <button id="search-btn"><i data-lucide="search"></i></button>
+                <button id="theme-toggle">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header class="legal-header">
+            <h1>Legal</h1>
+            <p>Terms of Service and Privacy Policy</p>
+        </header>
+
+        <div class="legal-tabs">
+            <button class="legal-tab active" data-tab="terms">Terms of Service</button>
+            <button class="legal-tab" data-tab="privacy">Privacy Policy</button>
+        </div>
+
+        <section id="terms-panel" class="legal-panel active">
+            <div class="legal-section">
+                <h2>Content Ownership</h2>
+                <p>All content broadcasted through this journal remains the intellectual property of the author. Redistribution without explicit "Signal Credit" is prohibited.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>System Integrity</h2>
+                <p>Users are prohibited from attempting to inject malicious scripts or bypass the local authentication protocols of the administrative dashboard.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>Limitation of Liability</h2>
+                <p>The software is provided "as is", without warranty of any kind, express or implied. Use of the local storage database is at the user's own risk.</p>
+            </div>
+        </section>
+
+        <section id="privacy-panel" class="legal-panel">
+            <div class="legal-section">
+                <h2>Data Collection</h2>
+                <p>This journal is a minimalist, privacy-first platform. We do not use third-party tracking cookies or sell your analytical data. Any information stored (such as theme preferences) is kept in your browser's local storage.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>Local Storage</h2>
+                <p>We use <code>localStorage</code> to persist your session and preferences. This data never leaves your device unless you explicitly use the "Export" functionality in the dashboard.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2>Contact</h2>
+                <p>For inquiries regarding data handled by this system, please contact the administrator via the dashboard signal portal.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.legal-tab');
+            const panels = document.querySelectorAll('.legal-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(target + '-panel').classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

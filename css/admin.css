@@ -11,7 +11,7 @@
 
 body.admin-dashboard {
     background-color: var(--admin-bg);
-    display: block;
+    display: flex;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
@@ -27,12 +27,50 @@ body.admin-dashboard {
     border-right: 2px solid var(--border-color);
     padding: 2.5rem 1.5rem;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .sidebar-header {
-    margin-bottom: 4rem;
-    padding-left: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
 }
+
+.sidebar-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 0.8rem;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.sidebar-theme-toggle span {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 0.85rem;
+}
+
+.sidebar-theme-toggle .moon-icon { display: none; }
+.sidebar-theme-toggle .sun-icon { display: inline-block; }
+
+[data-theme="dark"] .sidebar-theme-toggle .sun-icon { display: none; }
+[data-theme="dark"] .sidebar-theme-toggle .moon-icon { display: inline-block; }
 
 .logo-text {
     font-weight: 900;
@@ -83,6 +121,7 @@ body.admin-dashboard {
     margin-left: 260px;
     padding: 4rem 6%;
     min-height: 100vh;
+    flex-grow: 1;
 }
 
 .admin-header {
@@ -266,9 +305,133 @@ body.admin-dashboard {
 
 /* Mobile Responsiveness */
 @media (max-width: 1024px) {
-    .sidebar { display: none; }
-    .main-stage { margin-left: 0; padding: 2rem 5%; }
+    .mobile-nav-toggle { display: block; }
+    
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.active { transform: translateX(0); }
+    
+    .sidebar.active ~ .sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .main-stage {
+        margin-left: 0 !important;
+        padding-top: 6rem !important;
+    }
+    
     .admin-header h1 { font-size: 2rem; }
+}
+
+/* --- Sidebar Navigation Elements --- */
+.sidebar-nav {
+    padding: 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.nav-group {
+    margin-bottom: 2.5rem;
+}
+
+.nav-group-title {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 800;
+    opacity: 0.4;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.8rem 0;
+    transition: opacity 0.2s;
+    opacity: 0.7;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+    opacity: 1;
+}
+
+.sidebar-link i {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Sidebar Overlay --- */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* --- Mobile Nav Toggle --- */
+.mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 1.5rem;
+    right: 4.5rem;
+    z-index: 1000;
+}
+
+.theme-toggle-btn span {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 1.2rem;
+}
+
+.theme-toggle-btn .moon-icon { display: none; }
+.theme-toggle-btn .sun-icon { display: inline-block; }
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon { display: none; }
+[data-theme="dark"] .theme-toggle-btn .moon-icon { display: inline-block; }
+
+/* --- Sidebar Theme Toggle Override --- */
+.sidebar-theme-toggle {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin-left: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 /* --- Settings Page Styles --- */

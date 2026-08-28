@@ -1,5 +1,10 @@
 // Search Page Handler
 document.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('journal_authenticated')) {
+        window.location.href = 'login.html';
+        return;
+    }
+    
     lucide?.createIcons();
     
     const urlParams = new URLSearchParams(window.location.search);
@@ -12,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (query) {
         performSearch(query);
-        document.getElementById('searchQuery').textContent = `Results for "${query}"`;
+        const searchQueryEl = document.getElementById('searchQuery');
+        if (searchQueryEl) searchQueryEl.textContent = `Results for "${query}"`;
     }
 });
 
@@ -50,7 +56,7 @@ function performSearch(query) {
         resultsContainer.innerHTML = `
             <div class="empty-state" style="grid-column: 1/-1;">
                 <p>No results found for "${query}"</p>
-                <p style="color: var(--secondary-text); margin-top: 1rem;">Try different keywords or <a href="index.html" style="color: var(--accent-color);">browse all posts</a></p>
+                <p style="color: var(--secondary-text); margin-top: 1rem;">Try different keywords or <a href="post_list.html" style="color: var(--accent-color);">browse all posts</a></p>
             </div>
         `;
         return;

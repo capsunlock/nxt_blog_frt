@@ -45,7 +45,7 @@ function renderPublicPosts() {
         grid.innerHTML = `
             <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 4rem; opacity: 0.5;">
                 <p>No signals found matching this criteria.</p>
-                <a href="index.html" style="color: var(--accent-color); text-decoration: underline; display: block; margin-top: 1rem;">Clear all filters</a>
+                <a href="post_list.html" style="color: var(--accent-color); text-decoration: underline; display: block; margin-top: 1rem;">Clear all filters</a>
             </div>`;
         return;
     }
@@ -88,6 +88,6 @@ function updateHeroContext(label) {
     
     if (heroTitle) heroTitle.innerText = label;
     if (heroSubtitle) {
-        heroSubtitle.innerHTML = `<a href="index.html" style="color: var(--accent-color); text-decoration: none;">← Back to all posts</a>`;
+        heroSubtitle.innerHTML = `<a href="post_list.html" style="color: var(--accent-color); text-decoration: none;">← Back to all posts</a>`;
     }
 }

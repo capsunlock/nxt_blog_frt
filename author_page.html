@@ -16,8 +16,19 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">JOURNAL</a>
+            <a href="post_list.html" class="logo">JOURNAL</a>
+            <div class="nav-links" id="navLinks">
+                <a href="post_list.html">Feed</a>
+                <a href="archive.html">Series</a>
+                <a href="categories.html">Categories</a>
+                <a href="about.html">Manifesto</a>
+            </div>
             <div class="nav-controls">
+                <button id="mobile-menu" class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+                <button id="search-btn"><i data-lucide="search"></i></button>
                 <button id="theme-toggle">☀️</button>
             </div>
         </div>
@@ -39,12 +50,17 @@
 
                         <div class="author-social" id="authorSocial">
                             <!-- Social links populated by JS -->
+                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste alias dolor obcaecati vitae voluptatem eum nihil minus? Sed error possimus placeat et. Adipisci sequi quo aperiam tenetur, similique libero commodi.</p>
                         </div>
 
                         <div class="author-meta">
                             <span class="meta-item">
                                 <i data-lucide="file-text"></i>
                                 <strong id="postCount">0</strong> Articles
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="users"></i>
+                                <strong id="subscriberCount">0</strong> Subscribers
                             </span>
                             <span class="meta-item">
                                 <i data-lucide="calendar"></i>
@@ -55,10 +71,15 @@
                 </div>
             </header>
 
+            <nav class="author-nav">
+                <a href="#authorPostsGrid" class="active">Published Articles</a>
+                <a href="#authorSeriesSection">Curated Series</a>
+            </nav>
+
             <section class="author-posts author-section">
                 <div class="section-header">
                     <h2>Published Works</h2>
-                    <span class="section-count" id="postCount">0</span>
+                    <span class="section-count" id="postCountDisplay">0</span>
                 </div>
                 <div id="authorPostsGrid">
                     <div class="empty-state">Loading articles...</div>
@@ -71,6 +92,30 @@
                 </div>
                 <div id="authorSeriesList">
                     <div class="empty-state">Loading series...</div>
+                </div>
+            </section>
+
+            <section class="author-bibliography author-section">
+                <h3 class="biblio-title">Latest Work</h3>
+                <div class="biblio-list" id="author-biblio-list">
+                    <a href="post_list.html" class="index-row">
+                        <span class="index-date">Mar 12</span>
+                        <span class="index-title">The Ethics of Design Constraints</span>
+                        <span class="index-cat">Philosophy</span>
+                    </a>
+                    <a href="post_list.html" class="index-row">
+                        <span class="index-date">Feb 28</span>
+                        <span class="index-title">Architecture of the Void</span>
+                        <span class="index-cat">Design</span>
+                    </a>
+                    <a href="post_list.html" class="index-row">
+                        <span class="index-date">Jan 15</span>
+                        <span class="index-title">Simplicity as Performance</span>
+                        <span class="index-cat">Technology</span>
+                    </a>
+                </div>
+                <div class="load-more-container">
+                    <button class="load-more-btn" id="author-load-more">See More Work</button>
                 </div>
             </section>
 
@@ -89,7 +134,16 @@
         <div id="footer-credits">© 2026 — Journal</div>
     </footer>
 
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
     <script src="js/author_page.js"></script>
+    <script src="js/author_profile.js"></script>
 </body>
 </html>

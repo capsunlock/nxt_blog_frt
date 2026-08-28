@@ -31,12 +31,14 @@ function toggleEditMode() {
 function saveProfile() {
     const newName = document.getElementById('input-name').value;
     const newBio = document.getElementById('input-bio').value;
-    const newLinks = document.getElementById('input-links').value;
+    const twitter = document.getElementById('input-twitter').value;
+    const newsletter = document.getElementById('input-newsletter').value;
+    const rss = document.getElementById('input-rss').value;
 
     document.getElementById('display-name').innerText = newName;
     document.getElementById('display-bio').innerText = newBio;
-    
-    const linkHTML = newLinks.split(',').map(l => `<a href="#">${l.trim()}</a>`).join(' / ');
+
+    const linkHTML = `<a href="${twitter}" target="_blank">Twitter</a> / <a href="${newsletter}" target="_blank">Newsletter</a> / <a href="${rss}" target="_blank">RSS</a>`;
     document.getElementById('display-links').innerHTML = linkHTML;
 
     toggleEditMode();

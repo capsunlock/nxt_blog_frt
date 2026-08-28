@@ -52,23 +52,77 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.getElementById('search-btn');
     const searchOverlay = document.getElementById('search-overlay');
     const closeSearch = document.getElementById('close-search');
-    const searchInput = document.getElementById('search-input');
+    const searchInput = searchOverlay?.querySelector('input[type="text"]');
+    const searchSuggestions = document.getElementById('search-suggestions');
 
     if (searchBtn && searchOverlay) {
         searchBtn.addEventListener('click', () => {
             searchOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-            setTimeout(() => searchInput.focus(), 100);
+            setTimeout(() => searchInput?.focus(), 100);
         });
 
         const hideSearch = () => {
             searchOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            if (searchInput) searchInput.value = '';
+            if (searchSuggestions) {
+                searchSuggestions.innerHTML = '';
+                searchSuggestions.style.display = 'none';
+            }
         };
 
         closeSearch.addEventListener('click', hideSearch);
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && searchOverlay.classList.contains('active')) hideSearch();
+        });
+
+        searchInput?.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+            if (!query || !searchSuggestions) {
+                if (searchSuggestions) {
+                    searchSuggestions.innerHTML = '';
+                    searchSuggestions.style.display = 'none';
+                }
+                return;
+            }
+
+            const posts = JSON.parse(localStorage.getItem('journal_posts') || '[]');
+            const lowerQuery = query.toLowerCase();
+            const matches = posts.filter(post => 
+                post.title?.toLowerCase().includes(lowerQuery) ||
+                post.category?.toLowerCase().includes(lowerQuery) ||
+                (post.tags && post.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
+            ).slice(0, 5);
+
+            if (matches.length === 0) {
+                searchSuggestions.innerHTML = '<div class="suggestion-item">No results found</div>';
+            } else {
+                searchSuggestions.innerHTML = matches.map(post => {
+                    const slug = post.slug || post.title.toLowerCase().replace(/\s+/g, '-');
+                    return `<a href="blog_post.html?slug=${slug}" class="suggestion-item" data-close-search>
+                        <div class="suggestion-title">${post.title || 'Untitled'}</div>
+                        <div class="suggestion-meta">${post.category || ''} ${post.date || ''}</div>
+                    </a>`;
+                }).join('');
+            }
+            searchSuggestions.style.display = 'block';
+        });
+
+        searchSuggestions?.addEventListener('click', (e) => {
+            if (e.target.closest('[data-close-search]')) {
+                hideSearch();
+            }
+        });
+
+        searchInput?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const query = e.target.value.trim();
+                if (query) {
+                    hideSearch();
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
+            }
         });
     }
 
@@ -92,6 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.classList.toggle('active');
         navLinks.classList.toggle('active');
         document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    });
+
+    navLinks?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn?.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = '';
+        });
     });
 });
 

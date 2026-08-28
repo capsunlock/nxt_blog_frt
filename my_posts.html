@@ -12,12 +12,17 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="logo">JOURNAL</a>
+                <a href="post_list.html" class="logo">JOURNAL</a>
+                <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-group">
                 <span class="nav-group-title">Content</span>
-                <a href="dashboard_home.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
+                    <a href="dashboard_home.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    <a href="dashboard.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
                 <a href="my_posts.html" class="sidebar-link active"><i data-lucide="file-text"></i> My Posts</a>
                 <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
                 <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
@@ -29,7 +34,7 @@
             </div>
             <div class="nav-group">
                 <span class="nav-group-title">System</span>
-                <a href="#" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+                <a href="settings.html" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
                 <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
             </div>
         </nav>
@@ -47,7 +52,9 @@
                 <span class="nav-group-title" style="margin:0">Library</span>
                 <h1>My Posts</h1>
             </div>
-            <a href="create_post.html" class="btn-create">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
+                <a href="create_post.html" class="btn-create">
                 <i data-lucide="plus" style="width:16px"></i> Create New
             </a>
         </div>
@@ -58,61 +65,69 @@
             <span class="filter-item">Drafts (6)</span>
         </div>
 
+        <div class="posts-table-header">
+            <span>Article</span>
+            <span>Status</span>
+            <span>Stats</span>
+            <span style="text-align: right;">Actions</span>
+        </div>
+
         <div class="posts-container">
-            <table class="posts-table">
-                <thead>
-                    <tr>
-                        <th>Article</th>
-                        <th class="hide-mobile">Status</th>
-                        <th class="hide-mobile">Stats</th>
-                        <th style="text-align: right;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="post-row">
-                        <td>
-                            <a href="#" class="post-title">The Ethics of Design Constraints</a>
-                            <div class="post-meta">Philosophy • Published 2h ago</div>
-                        </td>
-                        <td class="hide-mobile"><span class="status-pill status-published">Published</span></td>
-                        <td class="hide-mobile">
-                            <div class="post-stats">
-                                <span class="stat-item">1,240 Words</span>
-                                <span class="stat-item">6 Min Read</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="actions">
-                                <button class="action-btn" title="Analytics"><i data-lucide="bar-chart-2" style="width:16px"></i></button>
-                                <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
-                                <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="post-row">
-                        <td>
-                            <a href="#" class="post-title">Minimalist Structures (Part 2)</a>
-                            <div class="post-meta">Architecture • Edited Yesterday</div>
-                        </td>
-                        <td class="hide-mobile"><span class="status-pill status-draft">Draft</span></td>
-                        <td class="hide-mobile">
-                            <div class="post-stats">
-                                <span class="stat-item">450 Words</span>
-                                <span class="stat-item">2 Min Read</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="actions">
-                                <button class="action-btn" title="Preview"><i data-lucide="eye" style="width:16px"></i></button>
-                                <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
-                                <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <a href="#" class="my-post-card">
+                <div class="my-post-card-header">
+                    <div>
+                        <span class="post-title">The Ethics of Design Constraints</span>
+                        <div class="post-meta">Philosophy • Published 2h ago</div>
+                    </div>
+                </div>
+                <div class="my-post-card-body">
+                    <div class="my-post-card-meta-row">
+                        <span class="post-status status-published">Published</span>
+                        <div class="post-stats">
+                            <span class="stat-item">1,240 Words</span>
+                            <span class="stat-item">6 Min Read</span>
+                        </div>
+                    </div>
+                    <div class="my-post-card-actions">
+                        <button class="action-btn" title="Analytics"><i data-lucide="bar-chart-2" style="width:16px"></i></button>
+                        <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
+                        <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="my-post-card">
+                <div class="my-post-card-header">
+                    <div>
+                        <span class="post-title">Minimalist Structures (Part 2)</span>
+                        <div class="post-meta">Architecture • Edited Yesterday</div>
+                    </div>
+                </div>
+                <div class="my-post-card-body">
+                    <div class="my-post-card-meta-row">
+                        <span class="post-status status-draft">Draft</span>
+                        <div class="post-stats">
+                            <span class="stat-item">450 Words</span>
+                            <span class="stat-item">2 Min Read</span>
+                        </div>
+                    </div>
+                    <div class="my-post-card-actions">
+                        <button class="action-btn" title="Preview"><i data-lucide="eye" style="width:16px"></i></button>
+                        <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
+                        <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
+                    </div>
+                </div>
+            </a>
         </div>
     </main>
+
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
     <script src="js/my_post.js"></script>

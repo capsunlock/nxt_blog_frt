@@ -3,7 +3,8 @@ document.getElementById('loginForm').addEventListener('submit', (e) => {
     const btn = e.target.querySelector('.enter-btn');
     btn.innerText = "Verifying...";
     
-    // Simulation of dashboard entry
+    localStorage.setItem('journal_authenticated', 'true');
+    
     setTimeout(() => {
         document.body.classList.add('logging-in');
         setTimeout(() => {

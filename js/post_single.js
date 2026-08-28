@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (bodyEl) bodyEl.innerHTML = post.body || '<p>No content available.</p>';
             
             if (post.tags && tagsEl) {
-                tagsEl.innerHTML = post.tags.map(t => `<a href="index.html?tag=${encodeURIComponent(t)}">#${t}</a>`).join(' ');
+                tagsEl.innerHTML = post.tags.map(t => `<a href="tag.html?tag=${encodeURIComponent(t)}">#${t}</a>`).join(' ');
             }
             
             if (post.heroImage && heroEl) {

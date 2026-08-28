@@ -140,6 +140,37 @@ body {
 [data-theme="dark"] .sun-icon { display: none; }
 [data-theme="dark"] .moon-icon { display: inline-block; }
 
+/* Admin Theme Toggle */
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 1.5rem;
+    right: 4.5rem;
+    z-index: 1000;
+}
+
+.theme-toggle-btn span {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 1.2rem;
+}
+
+.theme-toggle-btn .moon-icon { display: none; }
+.theme-toggle-btn .sun-icon { display: inline-block; }
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon { display: none; }
+[data-theme="dark"] .theme-toggle-btn .moon-icon { display: inline-block; }
+
 /* Mobile Menu Toggle (The Lines) */
 .menu-toggle {
     display: flex;
@@ -247,6 +278,38 @@ footer {
     line-height: 1;
 }
 
+/* Search Suggestions */
+.search-suggestions {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.2s ease;
+}
+
+.suggestion-item:hover {
+    color: var(--accent-color);
+}
+
+.suggestion-title {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.suggestion-meta {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-top: 0.25rem;
+}
+
 /* Results Area */
 .search-results {
     margin-top: 2rem;
@@ -297,22 +360,23 @@ footer {
 /* Mobile Drawer (Under 1024px) */
 @media (max-width: 1023px) {
     .nav-links {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         background-color: var(--bg-color);
-        z-index: 999;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 2.5rem;
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     .nav-links.active {
         display: flex;
+        transform: translateX(0);
         animation: fadeIn 0.3s ease;
     }
 

@@ -12,12 +12,17 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="logo">JOURNAL</a>
+                <a href="post_list.html" class="logo">JOURNAL</a>
+                <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-group">
                 <span class="nav-group-title">Content</span>
-                <a href="dashboard_home.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
+                    <a href="dashboard_home.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    <a href="dashboard.html" class="sidebar-link"><i data-lucide="layout-dashboard"></i> Overview</a>
                 <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
                 <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
                 <a href="media_library.html" class="sidebar-link active"><i data-lucide="image"></i> Media</a>
@@ -29,6 +34,7 @@
             </div>
             <div class="nav-group">
                 <span class="nav-group-title">System</span>
+                <a href="post_list.html" class="sidebar-link"><i data-lucide="external-link"></i> View Site</a>
                 <a href="#" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
                 <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
             </div>
@@ -47,7 +53,10 @@
                 <span class="nav-group-title" style="margin:0">Assets</span>
                 <h1>Media Library</h1>
             </div>
-            <button class="upload-btn"><i data-lucide="upload-cloud"></i> Upload New</button>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
+                <button class="upload-btn"><i data-lucide="upload-cloud"></i> Upload New</button>
+            </div>
         </div>
 
         <div class="media-controls">
@@ -97,6 +106,14 @@
 
         <div id="toast-container" class="toast-container"></div>
     </main>
+
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
     <script src="js/media_library.js"></script>

@@ -1,65 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') lucide.createIcons();
     renderSeries();
-
-    const modal = document.getElementById('series-modal');
-    
-    document.getElementById('open-series-modal').onclick = () => modal.style.display = 'flex';
-    document.getElementById('close-modal').onclick = () => modal.style.display = 'none';
-
-    document.getElementById('save-series').onclick = () => {
-        const name = document.getElementById('series-name').value;
-        const desc = document.getElementById('series-desc').value;
-
-        if(!name) return alert("Name required.");
-
-        const seriesList = JSON.parse(localStorage.getItem('journal_series') || '[]');
-        seriesList.push({
-            id: Date.now(),
-            name: name,
-            desc: desc,
-            postCount: 0
-        });
-
-        localStorage.setItem('journal_series', JSON.stringify(seriesList));
-        modal.style.display = 'none';
-        renderSeries();
-    };
 });
 
 function renderSeries() {
     const container = document.getElementById('series-container');
-    const seriesList = JSON.parse(localStorage.getItem('journal_series') || '[]');
+
+    const series = [
+        {
+            title: 'The Brutalist Digital',
+            desc: 'Exploring how 20th-century concrete architecture shaped the modern web\'s logic.',
+            count: '5 Parts',
+            image: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800',
+            href: 'collection_single.html'
+        },
+        {
+            title: 'The Typography of Silence',
+            desc: 'How variable fonts and fluid rhythm create psychological breathing room in design.',
+            count: '3 Parts',
+            image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800',
+            href: 'collection_single.html'
+        }
+    ];
 
     container.innerHTML = '';
 
-    if (seriesList.length === 0) {
-        container.innerHTML = '<div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem; opacity: 0.5;"><p>No series found in local storage.</p></div>';
-        return;
-    }
-
-    seriesList.forEach(s => {
-        const card = document.createElement('div');
+    series.forEach(s => {
+        const card = document.createElement('a');
+        card.href = s.href;
         card.className = 'series-card';
         card.innerHTML = `
-            <div>
-                <h3>${s.name}</h3>
-                <p>${s.desc}</p>
+            <div class="series-image">
+                <img src="${s.image}" alt="${s.title}">
+                <span class="series-count">${s.count}</span>
             </div>
-            <div class="series-meta">
-                <span>Posts: ${s.postCount}</span>
-                <a href="#" onclick="deleteSeries(${s.id})" style="color:red; text-decoration:none;">Purge</a>
+            <div class="series-content">
+                <span class="series-meta">Curated Series</span>
+                <h2>${s.title}</h2>
+                <p>${s.desc}</p>
+                <span class="view-series">View Series →</span>
             </div>
         `;
         container.appendChild(card);
     });
-}
-
-function deleteSeries(id) {
-    if(confirm("Delete this series? Posts won't be deleted, but they will be unlinked.")) {
-        let seriesList = JSON.parse(localStorage.getItem('journal_series') || '[]');
-        seriesList = seriesList.filter(s => s.id !== id);
-        localStorage.setItem('journal_series', JSON.stringify(seriesList));
-        renderSeries();
-    }
 }

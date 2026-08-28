@@ -21,6 +21,7 @@
     margin-bottom: 3rem;
 }
 .login-form {
+    margin-top: 1.5rem;
     text-align: left;
     display: grid;
     gap: 2rem;

@@ -27,6 +27,9 @@ body {
 }
 
 .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 2rem;
     border-bottom: 1px solid var(--border-color);
 }
@@ -128,11 +131,13 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .page-header h1 { font-size: 2.5rem; font-weight: 800; margin: 0; }
 
-/* --- Improved Create Button --- */
+/* --- Buttons --- */
 .btn-create {
     display: inline-flex;
     align-items: center;
@@ -163,6 +168,7 @@ body {
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .filter-item {
@@ -176,46 +182,71 @@ body {
 
 .filter-item.active { opacity: 1; }
 
-/* --- Table Styling --- */
+/* --- Posts List (Vertical Cards) --- */
 .posts-container {
-    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border-color);
     border: 1px solid var(--border-color);
 }
 
-.posts-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.posts-table th {
-    text-align: left;
-    padding: 1.5rem;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid var(--border-color);
-    opacity: 0.5;
-}
-
-.post-row {
-    border-bottom: 1px solid var(--border-color);
+.my-post-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background: var(--bg-color);
     transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
 }
 
-.post-row:hover { background: var(--admin-bg); }
-.post-row:last-child { border-bottom: none; }
+.my-post-card:hover {
+    background: var(--admin-bg);
+}
 
-.post-row td { padding: 1.5rem; vertical-align: middle; }
+.my-post-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
 
-.post-title { font-weight: 700; font-size: 1.1rem; color: var(--text-color); text-decoration: none; display: block; margin-bottom: 4px; }
-.post-meta { font-size: 0.75rem; opacity: 0.5; font-weight: 500; }
+.post-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
 
-/* Stats Styling */
-.post-stats { display: flex; flex-direction: column; gap: 4px; }
-.stat-item { font-size: 0.75rem; font-weight: 600; color: var(--text-color); opacity: 0.6; }
+.post-title:hover {
+    color: var(--accent-color);
+}
 
-.status-pill {
-    font-size: 0.6rem;
+.post-meta {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    font-weight: 500;
+}
+
+.my-post-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.my-post-card-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.post-status {
+    font-size: 0.65rem;
     text-transform: uppercase;
     font-weight: 800;
     padding: 4px 10px;
@@ -225,8 +256,25 @@ body {
 .status-published { background: #e6ffed; color: #22863a; }
 .status-draft { background: #fffbdd; color: #735c0f; }
 
-/* --- Improved Action Buttons --- */
-.actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+.post-stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.my-post-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
 .action-btn {
     background: transparent;
     border: 1px solid var(--border-color);
@@ -237,6 +285,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
 }
 
 .action-btn:hover { 
@@ -251,7 +300,28 @@ body {
     color: white; 
 }
 
+/* --- Desktop Table Header (hidden on mobile) --- */
+.posts-table-header {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .posts-table-header {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr 1fr;
+        padding: 1.2rem 1.5rem;
+        border-bottom: 2px solid var(--border-color);
+        font-size: 0.65rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        background: var(--admin-bg);
+        letter-spacing: 0.1em;
+    }
+}
+
 @media (max-width: 768px) {
     .hide-mobile { display: none; }
-    .post-title { font-size: 0.95rem; }
+    .post-title { font-size: 1rem; }
+    .my-post-card { padding: 1.5rem; }
+    .my-post-card-actions { justify-content: flex-start; }
 }

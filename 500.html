@@ -64,13 +64,19 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">JOURNAL</a>
+            <a href="post_list.html" class="logo">JOURNAL</a>
             <div class="nav-links" id="navLinks">
-                <a href="post_list.html">Articles</a>
+                <a href="post_list.html">Feed</a>
                 <a href="archive.html">Series</a>
+                <a href="categories.html">Categories</a>
                 <a href="about.html">Manifesto</a>
             </div>
             <div class="nav-controls">
+                <button id="mobile-menu" class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+                <button id="search-btn"><i data-lucide="search"></i></button>
                 <button id="theme-toggle">☀️</button>
             </div>
         </div>
@@ -81,9 +87,17 @@
         <div class="error-message">
             <h2>System Halt</h2>
             <p>The server encountered an unexpected condition and failed to process the request. The logic circuit is temporarily interrupted.</p>
-            <a href="index.html" class="back-link">Attempt Recovery →</a>
+            <a href="post_list.html" class="back-link">Attempt Recovery →</a>
         </div>
     </main>
+
+    <div id="search-overlay" class="search-overlay">
+        <button id="close-search" class="close-search">&times;</button>
+        <div class="search-content">
+            <input type="text" id="search-input" placeholder="Search...">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
