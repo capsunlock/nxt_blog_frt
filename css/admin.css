@@ -443,13 +443,14 @@ body.admin-dashboard {
     opacity: 0.7;
 }
 
-.theme-toggle-btn span {
+.theme-toggle-btn i {
     pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    font-size: 0.9rem;
+    width: 16px;
+    height: 16px;
 }
 
 .theme-toggle-btn .moon-icon { display: none; }
