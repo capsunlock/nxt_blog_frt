@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Posts — Journal</title>
+    <!-- CSS Load Order: Global -> Layout -> Page Specific -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/my_post.css">
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-    <body class="admin-dashboard">
+<body class="admin-dashboard">
 
+    <!-- Sidebar Navigation -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <a href="post_list.html" class="logo">JOURNAL</a>
             <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-                <span class="sun-icon">☀️</span>
-                <span class="moon-icon">🌙</span>
+                <i data-lucide="sun" class="sun-icon"></i>
+                <i data-lucide="moon" class="moon-icon"></i>
             </button>
         </div>
         <nav class="sidebar-nav">
@@ -44,6 +47,7 @@
 
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+    <!-- Main Content Area -->
     <main class="main-stage">
         <button class="mobile-nav-toggle" id="menu-toggle" aria-label="Menu">
             <span class="hamburger-line"></span>
@@ -59,9 +63,10 @@
             <div style="display: flex; gap: 1rem; align-items: center;">
                 <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
                 <a href="create_post.html" class="btn-create">
-                <i data-lucide="plus" style="width:16px"></i> Create New
-            </a>
-        </div>
+                    <i data-lucide="plus" style="width:16px; height:16px;"></i> Create New
+                </a>
+            </div>
+        </div> <!-- Fixed missing closing div -->
 
         <div class="filter-bar">
             <span class="filter-item active">All (64)</span>
@@ -70,10 +75,11 @@
         </div>
 
         <div class="posts-container">
-            <a href="#" class="my-post-card">
+            <!-- Card 1 (Div wrapper fixes unclickable buttons) -->
+            <div class="my-post-card">
                 <div class="my-post-card-header">
                     <div>
-                        <span class="post-title">The Ethics of Design Constraints</span>
+                        <a href="edit_post.html?id=1" class="post-title">The Ethics of Design Constraints</a>
                         <div class="post-meta">Philosophy • Published 2h ago</div>
                     </div>
                     <span class="post-status status-published">Published</span>
@@ -84,17 +90,18 @@
                         <span class="stat-item">6 Min Read</span>
                     </div>
                     <div class="my-post-card-actions">
-                        <button class="action-btn" title="Analytics"><i data-lucide="bar-chart-2" style="width:16px"></i></button>
-                        <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
-                        <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
+                        <a href="analytics.html?id=1" class="action-btn" title="Analytics"><i data-lucide="bar-chart-2" style="width:16px; height:16px;"></i></a>
+                        <a href="edit_post.html?id=1" class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px; height:16px;"></i></a>
+                        <button type="button" class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px; height:16px;"></i></button>
                     </div>
                 </div>
-            </a>
+            </div>
 
-            <a href="#" class="my-post-card">
+            <!-- Card 2 -->
+            <div class="my-post-card">
                 <div class="my-post-card-header">
                     <div>
-                        <span class="post-title">Minimalist Structures (Part 2)</span>
+                        <a href="edit_post.html?id=2" class="post-title">Minimalist Structures (Part 2)</a>
                         <div class="post-meta">Architecture • Edited Yesterday</div>
                     </div>
                     <span class="post-status status-draft">Draft</span>
@@ -105,15 +112,16 @@
                         <span class="stat-item">2 Min Read</span>
                     </div>
                     <div class="my-post-card-actions">
-                        <button class="action-btn" title="Preview"><i data-lucide="eye" style="width:16px"></i></button>
-                        <button class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px"></i></button>
-                        <button class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px"></i></button>
+                        <a href="preview.html?id=2" class="action-btn" title="Preview"><i data-lucide="eye" style="width:16px; height:16px;"></i></a>
+                        <a href="edit_post.html?id=2" class="action-btn" title="Edit"><i data-lucide="edit-3" style="width:16px; height:16px;"></i></a>
+                        <button type="button" class="action-btn btn-delete" title="Delete"><i data-lucide="trash-2" style="width:16px; height:16px;"></i></button>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
     </main>
 
+    <!-- Search Overlay -->
     <div id="search-overlay" class="search-overlay">
         <button id="close-search" class="close-search">&times;</button>
         <div class="search-content">
@@ -122,7 +130,12 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="js/script.js"></script>
     <script src="js/my_post.js"></script>
+    <script>
+        // Render Lucide icons on page load
+        lucide.createIcons();
+    </script>
 </body>
 </html>
