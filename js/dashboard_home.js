@@ -8,9 +8,7 @@ const overlay = document.getElementById('sidebar-overlay');
 
 function toggleSidebar() {
     const isActive = sidebar.classList.toggle('active');
-    const icon = menuToggle.querySelector('i');
-    icon.setAttribute('data-lucide', isActive ? 'x' : 'menu');
-    lucide.createIcons();
+    menuToggle.classList.toggle('active');
 }
 
 if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);

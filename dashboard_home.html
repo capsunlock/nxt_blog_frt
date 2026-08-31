@@ -5,15 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Author Dashboard — Journal</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/admin.css">
         <link rel="stylesheet" href="css/dashboard_home.css">
         <script src="https://unpkg.com/lucide@latest"></script>
     </head>
-    <body>
+    <body class="admin-dashboard">
 
         <aside class="sidebar">
             <div class="sidebar-header">
                 <a href="post_list.html" class="logo">JOURNAL</a>
-                <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
                     <span class="sun-icon">☀️</span>
                     <span class="moon-icon">🌙</span>
                 </button>
@@ -35,7 +36,7 @@
                 <div class="nav-group">
                     <span class="nav-group-title">System</span>
                     <a href="post_list.html" class="sidebar-link"><i data-lucide="external-link"></i> View Site</a>
-                    <a href="#" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
+                    <a href="settings.html" class="sidebar-link"><i data-lucide="settings"></i> Settings</a>
                     <a href="login.html" class="sidebar-link"><i data-lucide="log-out"></i> Log Out</a>
                 </div>
             </nav>
@@ -44,8 +45,10 @@
         <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <main class="main-stage">
-        <button class="mobile-nav-toggle" id="menu-toggle">
-            <i data-lucide="menu"></i>
+        <button class="mobile-nav-toggle" id="menu-toggle" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
         </button>
         
         <header class="dash-header" id="profile-header">

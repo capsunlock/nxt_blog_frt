@@ -13,7 +13,7 @@
     <aside class="sidebar">
         <div class="sidebar-header">
             <a href="post_list.html" class="logo">JOURNAL</a>
-            <button class="theme-toggle-btn sidebar-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
                 <span class="sun-icon">☀️</span>
                 <span class="moon-icon">🌙</span>
             </button>
@@ -26,11 +26,6 @@
                 <a href="my_posts.html" class="sidebar-link"><i data-lucide="file-text"></i> My Posts</a>
                 <a href="create_post.html" class="sidebar-link"><i data-lucide="plus-square"></i> New Post</a>
                 <a href="media_library.html" class="sidebar-link"><i data-lucide="image"></i> Media</a>
-            </div>
-            <div class="nav-group">
-                <span class="nav-group-title">Management</span>
-                <a href="comments_management.html" class="sidebar-link"><i data-lucide="message-square"></i> Comments</a>
-                <a href="series_management.html" class="sidebar-link"><i data-lucide="layers"></i> Series</a>
             </div>
             <div class="nav-group">
                 <span class="nav-group-title">Analytics</span>
@@ -49,8 +44,10 @@
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <main class="main-stage">
-        <button class="mobile-nav-toggle" id="menu-toggle">
-            <i data-lucide="menu"></i>
+        <button class="mobile-nav-toggle" id="menu-toggle" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
         </button>
 
         <header class="admin-header">

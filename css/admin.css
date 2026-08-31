@@ -40,37 +40,11 @@ body.admin-dashboard {
     border-bottom: 1px solid var(--border-color);
 }
 
-.sidebar-theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--text-color);
-    color: var(--bg-color);
-    border: none;
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    cursor: pointer;
-    margin-left: 0.8rem;
-    position: relative;
-    z-index: 1;
-    flex-shrink: 0;
-}
-
-.sidebar-theme-toggle span {
-    pointer-events: none;
+.sidebar-header-actions {
     display: flex;
     align-items: center;
-    justify-content: center;
-    line-height: 1;
-    font-size: 0.85rem;
+    gap: 8px;
 }
-
-.sidebar-theme-toggle .moon-icon { display: none; }
-.sidebar-theme-toggle .sun-icon { display: inline-block; }
-
-[data-theme="dark"] .sidebar-theme-toggle .sun-icon { display: none; }
-[data-theme="dark"] .sidebar-theme-toggle .moon-icon { display: inline-block; }
 
 .logo-text {
     font-weight: 900;
@@ -305,7 +279,7 @@ body.admin-dashboard {
 
 /* Mobile Responsiveness */
 @media (max-width: 1024px) {
-    .mobile-nav-toggle { display: block; }
+    .mobile-nav-toggle { display: flex; }
     
     .sidebar { transform: translateX(-100%); }
     .sidebar.active { transform: translateX(0); }
@@ -387,27 +361,82 @@ body.admin-dashboard {
     position: fixed;
     top: 1.5rem;
     right: 1.5rem;
-    z-index: 1000;
+    z-index: 99999;
     background: var(--text-color);
     color: var(--bg-color);
-    border: none;
-    padding: 10px;
+    border: 3px solid var(--bg-color);
+    padding: 14px;
     cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+    min-height: 56px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    pointer-events: auto;
+    border-radius: 0;
+}
+
+.mobile-nav-toggle .hamburger-line {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--bg-color);
+    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-toggle.active .hamburger-line:first-child {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-nav-toggle.active .hamburger-line:last-child {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.mobile-nav-toggle-label {
+    display: none;
+    position: fixed;
+    top: 1.5rem;
+    right: 5.5rem;
+    z-index: 99999;
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 0.5rem 1rem;
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 2px solid var(--bg-color);
+    pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+    .mobile-nav-toggle { display: flex; }
 }
 
 .theme-toggle-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--text-color);
-    color: var(--bg-color);
+    background: transparent;
+    color: var(--text-color);
     border: none;
-    padding: 10px;
+    padding: 6px;
     cursor: pointer;
-    position: fixed;
-    top: 1.5rem;
-    right: 4.5rem;
-    z-index: 1000;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    opacity: 0.7;
 }
 
 .theme-toggle-btn span {
@@ -416,7 +445,7 @@ body.admin-dashboard {
     align-items: center;
     justify-content: center;
     line-height: 1;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .theme-toggle-btn .moon-icon { display: none; }
@@ -424,15 +453,6 @@ body.admin-dashboard {
 
 [data-theme="dark"] .theme-toggle-btn .sun-icon { display: none; }
 [data-theme="dark"] .theme-toggle-btn .moon-icon { display: inline-block; }
-
-/* --- Sidebar Theme Toggle Override --- */
-.sidebar-theme-toggle {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    margin-left: 0.8rem;
-    margin-bottom: 1rem;
-}
 
 /* --- Settings Page Styles --- */
 .settings-grid {
