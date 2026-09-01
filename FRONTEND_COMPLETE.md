@@ -5,19 +5,18 @@
 ### Public Pages (Visitor-facing)
 | Page | File | Status | Features |
 |------|------|--------|----------|
-| Homepage | index.html | ✅ | Post grid, filtering, theme toggle |
+| Homepage | index.html | ✅ | Redirects to post_list.html |
+| Post Feed | post_list.html | ✅ | Post grid, filtering, theme toggle |
 | Blog Post | blog_post.html | ✅ | Full post view, author info, related posts |
-| Archive | archive.html | ✅ | Post chronological listing |
+| Archive | archive.html | ✅ | Post chronological listing + series grid |
 | About | about.html | ✅ | About page content |
-| Series View | series.html | ✅ | All series listing |
 | Series Detail | collection_single.html | ✅ | Single series posts |
-| Tag Page | tag_page.html | ✅ | Posts filtered by tag + related tags |
+| Tag Page | tag.html | ✅ | Posts filtered by tag + related tags |
 | Search | search.html | ✅ | Full-text search with filters |
 | Contact | contact.html | ✅ | Contact form with validation |
 | Newsletter | newsletter.html | ✅ | Subscription form, stats |
 | Unsubscribe | newsletter_unsubscribe.html | ✅ | Unsubscribe + feedback |
-| Privacy Policy | privacy.html | ✅ | Complete privacy policy |
-| Terms of Service | terms.html | ✅ | Complete ToS |
+| Legal | legal.html | ✅ | Merged Privacy + Terms with tabbed interface |
 | Error 404 | 404.html | ✅ | 404 page |
 | Error 500 | 500.html | ✅ | 500 page |
 
@@ -32,9 +31,9 @@
 | All Posts | post_list.html | ✅ | Admin view of all posts |
 | Media Library | media_library.html | ✅ | Image/file management |
 | Series Management | series_management.html | ✅ | CRUD for series |
+| Comments Management | comments_management.html | ✅ | Comment moderation |
 | Settings | settings.html | ✅ | Author settings |
-| Author Profile | author_profile.html | ✅ | Public author page |
-| Password Reset | password_reset_request.html | ✅ | Reset flow |
+| Password Reset | password_reset.html | ✅ | Reset flow |
 
 ---
 
@@ -42,21 +41,39 @@
 
 ### CSS Files Created/Updated
 - ✅ `css/style.css` - Global theme (light/dark, variables, responsive)
-- ✅ `css/contact.css` - Contact form styling
+- ✅ `css/admin.css` - Unified admin sidebar, mobile nav toggle, theme toggle
+- ✅ `css/legal.css` - Tabbed legal page (Privacy + Terms)
 - ✅ `css/newsletter.css` - Newsletter & unsubscribe pages
-- ✅ `css/search.css` - Search results layout
-- ✅ `css/series_management.css` - Admin series interface
+- ✅ `css/login.css` - Login page styling
+- ✅ `css/my_post.css` - Vertical card layout for post list
+- ✅ `css/comments_management.css` - Comment moderation interface
+- ✅ `css/archive.css` - Archive/series grid layouts
+- ✅ `css/tag.css` - Tag cloud + filtered post view
+- ✅ `css/dashboard_home.css` - Dashboard home specific styles
+- ✅ `css/media_library.css` - Media grid + toast notifications
+- ✅ `css/create_post.css` - Editor toolbar + media modal
+- ✅ `css/author_page.css` - Public author profile
+- ✅ `css/series_management.css` - Admin series management
 - ✅ All existing page-specific CSS maintained
 
 ### JavaScript Files Created/Updated
 - ✅ `js/script.js` - Global functionality (theme, search, transitions)
+- ✅ `js/admin.js` - Unified admin sidebar + mobile toggle logic
+- ✅ `js/series_management.js` - Series CRUD operations
+- ✅ `js/comments_management.js` - Comment moderation
+- ✅ `js/media_library.js` - Media library interactions
+- ✅ `js/my_post.js` - My posts page logic
+- ✅ `js/create_post.js` - Post editor functionality
+- ✅ `js/dashboard_home.js` - Dashboard home logic
+- ✅ `js/settings.js` - Settings page logic
 - ✅ `js/app.js` - Homepage rendering
 - ✅ `js/contact.js` - Contact form handling
 - ✅ `js/newsletter.js` - Newsletter signup/unsubscribe
 - ✅ `js/search.js` - Search functionality
 - ✅ `js/password_reset.js` - Password reset flow
-- ✅ `js/series_management.js` - Series CRUD operations
-- ✅ All existing page-specific scripts maintained
+- ✅ `js/categories.js` - Category filtering
+- ✅ `js/tag.js` - Tag filtering
+- ✅ `js/author_page.js` - Author profile logic
 
 ---
 
@@ -83,19 +100,20 @@ Dark Mode:
 ### Component Library
 - Progress bar (scroll indicator)
 - Navigation bar (sticky, responsive)
-- Theme toggle (light/dark)
+- Theme toggle (light/dark) - lucide sun/moon icons
 - Search overlay
 - Modal dialogs
 - Form components
 - Card layouts
 - Grid systems
-- Mobile navigation
+- Mobile sidebar navigation
+- Toast notifications
 
 ### Features Implemented
-- ✅ Light/Dark theme toggle
+- ✅ Light/Dark theme toggle (localStorage persistence)
 - ✅ Responsive design (mobile-first)
 - ✅ Progress bar on scroll
-- ✅ Custom cursor effects
+- ✅ Custom cursor effects (desktop only)
 - ✅ Page transitions
 - ✅ Search functionality
 - ✅ Form validation
@@ -103,6 +121,9 @@ Dark Mode:
 - ✅ Lucide icon integration
 - ✅ Markdown preview
 - ✅ Image upload preview
+- ✅ Admin sidebar with mobile slide-in
+- ✅ Tabbed legal page (Privacy + Terms)
+- ✅ Comment moderation interface
 
 ---
 
@@ -133,13 +154,14 @@ GET  /api/posts/           → List published posts
 GET  /api/posts/<slug>/    → Get single post
 POST /api/posts/           → Create post (auth required)
 PUT  /api/posts/<slug>/    → Update post (auth required)
-DELETE /api/posts/<slug>/  → Delete post (auth required)
+DELETE /api/posts/<slug>/ → Delete post (auth required)
 
 GET  /api/authors/         → List authors
 GET  /api/authors/<id>/    → Get author profile
 
 GET  /api/tags/            → List tags
 GET  /api/series/          → List series
+GET  /api/series/<slug>/   → Get single series
 
 POST /api/newsletter/subscribe/   → Subscribe
 POST /api/newsletter/unsubscribe/ → Unsubscribe
@@ -147,6 +169,11 @@ POST /api/newsletter/unsubscribe/ → Unsubscribe
 POST /api/auth/login/      → Login
 POST /api/auth/logout/     → Logout
 POST /api/auth/register/   → Register
+
+GET  /api/comments/        → List comments
+POST /api/comments/        → Create comment
+PUT  /api/comments/<id>/   → Approve/reject comment
+DELETE /api/comments/<id>/ → Delete comment
 ```
 
 ---
@@ -168,10 +195,10 @@ Refer to `BACKEND_SETUP.md` for detailed Django setup and deployment instruction
 
 | Metric | Count |
 |--------|-------|
-| Total HTML Files | 26 |
-| CSS Files | 19 |
-| JS Files | 16 |
-| Total Lines of Code | ~8,000+ |
+| Total HTML Files | 27 |
+| CSS Files | 23 |
+| JS Files | 24 |
+| Total Lines of Code | ~10,000+ |
 | Pages Completed | 100% |
 | Responsive Design | Yes |
 | Dark Mode Support | Yes |
@@ -192,8 +219,10 @@ Refer to `BACKEND_SETUP.md` for detailed Django setup and deployment instruction
 ✅ Tag/category filtering
 ✅ Markdown preview in editor
 ✅ Image upload preview
-✅ Responsive navigation
+✅ Responsive navigation with mobile sidebar
 ✅ Page transitions
+✅ Comment moderation UI
+✅ Tabbed legal page
 
 ## ⚠️ What Needs Backend
 
