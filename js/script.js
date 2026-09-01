@@ -142,19 +142,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('navLinks');
 
-    mobileMenuBtn?.addEventListener('click', () => {
-        mobileMenuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-    });
+    if (navLinks && mobileMenuBtn) {
+        const navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay';
+        document.body.appendChild(navOverlay);
 
-    navLinks?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuBtn?.classList.remove('active');
+        function openMenu() {
+            mobileMenuBtn.classList.add('active');
+            navLinks.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenuBtn.classList.remove('active');
             navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
             document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
-    });
+
+        navOverlay.addEventListener('click', closeMenu);
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+    }
 });
 
 // --- Scroll Performance ---
