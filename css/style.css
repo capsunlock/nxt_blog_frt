@@ -232,13 +232,13 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--nav-bg); /* Uses the existing semi-transparent nav color */
+    background-color: var(--nav-bg);
     backdrop-filter: blur(20px);
-    z-index: 2000; /* Higher than the navbar */
-    display: none; /* Hidden by default */
+    z-index: 10002;
+    display: none;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 5vh;
+    padding-top: 6rem;
     transition: opacity 0.3s ease;
 }
 

@@ -1,10 +1,5 @@
 // Search Page Handler
 document.addEventListener('DOMContentLoaded', () => {
-    if (!localStorage.getItem('journal_authenticated')) {
-        window.location.href = 'login.html';
-        return;
-    }
-    
     lucide?.createIcons();
     
     const urlParams = new URLSearchParams(window.location.search);
