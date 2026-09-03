@@ -31,8 +31,8 @@
             </div>
             <div class="nav-group">
                 <span class="nav-group-title">Analytics</span>
-                <a href="#" class="sidebar-link"><i data-lucide="bar-chart-3"></i> Traffic</a>
-                <a href="#" class="sidebar-link"><i data-lucide="users"></i> Subscribers</a>
+                <a href="traffic.html" class="sidebar-link"><i data-lucide="bar-chart-3"></i> Traffic</a>
+                <a href="subscribers.html" class="sidebar-link"><i data-lucide="users"></i> Subscribers</a>
             </div>
             <div class="nav-group">
                 <span class="nav-group-title">System</span>
@@ -71,7 +71,13 @@
             <section class="post-meta-fields">
                 <div class="meta-field">
                     <label for="post-category" class="meta-label">Category</label>
-                    <input type="text" id="post-category" class="meta-input" placeholder="Architecture">
+                    <select id="post-category" class="meta-input" style="width: 100%; cursor: pointer;">
+                        <option value="">Select Category...</option>
+                    </select>
+                    <div id="category-create-wrapper" class="inline-create-series" style="display: none;">
+                        <input type="text" id="new-category-name" placeholder="New category...">
+                        <button id="save-new-category" type="button">Save</button>
+                    </div>
                 </div>
                 <div class="meta-field">
                     <label for="post-tags" class="meta-label">Tags</label>
@@ -89,6 +95,10 @@
                         <select id="post-series" class="meta-input" style="width: 100%; cursor: pointer;">
                             <option value="">Select Series...</option>
                         </select>
+                        <div id="series-create-wrapper" class="inline-create-series" style="display: none;">
+                            <input type="text" id="new-series-name" placeholder="Series name...">
+                            <button id="save-new-series" type="button">Save</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -139,6 +149,18 @@
                 <div style="display: flex; gap: 10px;">
                     <button class="btn btn-primary" id="insert-media-btn" style="flex: 2; justify-content:center;">Insert into Post</button>
                     <button class="btn" style="flex: 1; justify-content:center;" onclick="closeMediaModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirm-modal" class="confirm-modal" style="display:none;">
+            <div class="confirm-modal-backdrop"></div>
+            <div class="confirm-modal-box">
+                <h3>Delete Draft?</h3>
+                <p>This will permanently remove your current draft. This action cannot be undone.</p>
+                <div class="confirm-modal-actions">
+                    <button class="btn" id="confirm-cancel">Cancel</button>
+                    <button class="btn btn-danger" id="confirm-delete">Delete</button>
                 </div>
             </div>
         </div>

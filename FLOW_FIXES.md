@@ -9,6 +9,14 @@ Your previous frontend had **3 critical broken user flows**:
 
 **Status: ALL 3 GAPS NOW CLOSED ✅**
 
+### Latest Fixes (Recent Session)
+1. ✅ **Traffic & Subscribers** - Admin analytics pages added
+2. ✅ **Active Nav Highlighting** - Current page glows in admin + public nav
+3. ✅ **Mobile Nav Dropdown** - Public mobile nav is a clean dropdown panel
+4. ✅ **Custom Cursor Fix** - Visible on navbar/search overlay
+5. ✅ **Search UX Fixes** - Enter key works; overlay no longer blocked
+6. ✅ **Theme Toggle Unify** - Same style across all admin pages
+
 ---
 
 ## 1️⃣ Fixed: Author Profile Flow
@@ -205,27 +213,28 @@ comments_management.html Features:
 
 ## Updated Page Structure
 
-### Public Pages (14 pages)
+### Public Pages (15 pages)
 ```
 index.html                          → Homepage
 blog_post.html                      → Single post (FIXED: author link)
-archive.html                        → Post chronological list
+archive.html                        → Post chronological list + series grid
 author_page.html        ✅ NEW      → Author profile & posts
-tag_page.html                       → Tag filtering
-series.html                         → Series index
+tag.html                            → Tag filtering + cloud
+categories.html          ✅ NEW      → Category filtering
 collection_single.html              → Single series
 search.html                         → Search results
 about.html                          → About page
 contact.html                        → Contact form
-privacy.html                        → Privacy policy
-terms.html                          → Terms of service
+legal.html                          → Privacy + Terms tabbed interface
 404.html                            → Not found error
 500.html                            → Server error
+newsletter.html                     → Newsletter signup
+newsletter_unsubscribe.html         → Unsubscribe/feedback
 ```
 
-### Admin/Dashboard Pages (12 pages)
+### Admin/Dashboard Pages (13 pages)
 ```
-login.html                          → Authentication (FIXED: password link)
+login.html                          → Authentication
 dashboard.html                      → Layout wrapper
 dashboard_home.html                 → Overview/stats
 my_posts.html                       → Author's posts
@@ -233,10 +242,11 @@ post_list.html                      → All posts (admin)
 post_create.html                    → Create/edit posts
 media_library.html                  → Files & images
 series_management.html              → Series CRUD
-author_profile.html                 → Author settings
-settings.html                       → Site settings
 comments_management.html ✅ NEW     → Comment moderation
-password_reset.html      ✅ UPDATED → Password reset flow
+traffic.html            ✅ NEW      → Traffic analytics
+subscribers.html       ✅ NEW      → Subscriber stats
+settings.html                       → Site settings
+password_reset.html                 → Password reset flow
 ```
 
 ---
@@ -345,12 +355,13 @@ comments_management.html ✅ (NEW)
 
 ## Page Count Summary
 
-**Before:** 25 HTML pages (with 3 broken flows)
-**After:** 29 HTML pages (all flows complete)
+**Before:** 26 HTML pages (with broken flows)
+**After:** 28 HTML pages (all flows complete)
 
-- **Added:** 3 new pages
-- **Fixed:** 3 critical user flow gaps
-- **Total:** 29 HTML + 21 CSS + 18 JS = 68 files
+- **Added:** traffic.html, subscribers.html, categories.html
+- **Merged:** privacy+terms → legal.html, tag_page → tag.html, author_profile → author_page.html, series → archive.html
+- **Fixed:** 6 UX issues (mobile nav, cursor, search, theme toggle, active nav highlighting)
+- **Total:** 28 HTML + 22 CSS + 23 JS = 73 files
 
 ---
 

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Series Management — Journal Admin</title>
+    <title>Subscribers — Journal Admin</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/archive.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="admin-dashboard">
@@ -14,12 +13,10 @@
     <aside class="sidebar">
         <div class="sidebar-header">
             <a href="post_list.html" class="logo">JOURNAL</a>
-            <div class="sidebar-header-actions">
-                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-                    <i data-lucide="sun" class="sun-icon"></i>
-                    <i data-lucide="moon" class="moon-icon"></i>
-                </button>
-            </div>
+            <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+                <i data-lucide="sun" class="sun-icon"></i>
+                <i data-lucide="moon" class="moon-icon"></i>
+            </button>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-group">
@@ -33,7 +30,7 @@
             <div class="nav-group">
                 <span class="nav-group-title">Analytics</span>
                 <a href="traffic.html" class="sidebar-link"><i data-lucide="bar-chart-3"></i> Traffic</a>
-                <a href="subscribers.html" class="sidebar-link"><i data-lucide="users"></i> Subscribers</a>
+                <a href="subscribers.html" class="sidebar-link active"><i data-lucide="users"></i> Subscribers</a>
             </div>
             <div class="nav-group">
                 <span class="nav-group-title">System</span>
@@ -54,42 +51,56 @@
         </button>
 
         <header class="admin-header">
-            <h1>Series Index</h1>
+            <h1>Subscribers</h1>
             <div class="header-actions">
                 <button id="search-btn" class="btn btn-icon" aria-label="Search"><i data-lucide="search"></i></button>
-                <button class="btn btn-primary" id="open-series-modal"><i data-lucide="plus"></i> New Series</button>
             </div>
         </header>
 
-        <section class="archive-container">
-            <div class="archive-header">
-                <h1 class="archive-title">Series</h1>
-                <p class="archive-description">Manage your curated collections and deep dives.</p>
+        <section class="analytics-overview">
+            <div class="stat-card">
+                <span class="stat-label">Total Subscribers</span>
+                <div class="stat-value">8,432</div>
+                <div class="stat-sub">+124 this week</div>
             </div>
+            <div class="stat-card">
+                <span class="stat-label">Active</span>
+                <div class="stat-value">7,891</div>
+                <div class="stat-sub">93.5% engagement</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Unsubscribed (30d)</span>
+                <div class="stat-value">32</div>
+                <div class="stat-sub">0.4% churn rate</div>
+            </div>
+        </section>
 
-            <section class="series-grid" id="series-container">
-                <div class="empty-state">No series defined in system.</div>
-            </section>
+        <section class="management-section">
+            <h2 class="section-title">Recent Subscribers</h2>
+            <div class="management-table">
+                <div class="table-header">
+                    <span>Email</span>
+                    <span>Date</span>
+                    <span>Status</span>
+                </div>
+                <div class="post-row">
+                    <div class="post-title-cell"><strong>alex@example.com</strong></div>
+                    <div>Sep 1, 2026</div>
+                    <div><span class="badge status-published">Active</span></div>
+                </div>
+                <div class="post-row">
+                    <div class="post-title-cell"><strong>jordan@example.com</strong></div>
+                    <div>Aug 28, 2026</div>
+                    <div><span class="badge status-published">Active</span></div>
+                </div>
+                <div class="post-row">
+                    <div class="post-title-cell"><strong>casey@example.com</strong></div>
+                    <div>Aug 25, 2026</div>
+                    <div><span class="badge status-draft">Pending</span></div>
+                </div>
+            </div>
         </section>
     </main>
-
-    <div id="series-modal" class="admin-modal">
-        <div class="modal-content">
-            <h2 class="section-title">Initialize New Series</h2>
-            <div class="form-group">
-                <label>Series Name</label>
-                <input type="text" id="series-name" placeholder="e.g. CSS Architecture">
-            </div>
-            <div class="form-group">
-                <label>Description (Short)</label>
-                <input type="text" id="series-desc" placeholder="A deep dive into grid and flexbox.">
-            </div>
-            <div class="modal-actions">
-                <button class="btn" id="close-modal">Cancel</button>
-                <button class="btn btn-primary" id="save-series">Create Entry</button>
-            </div>
-        </div>
-    </div>
 
     <div id="search-overlay" class="search-overlay">
         <button id="close-search" class="close-search">&times;</button>
@@ -100,6 +111,6 @@
     </div>
 
     <script src="js/script.js"></script>
-    <script src="js/series.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@
 | About | about.html | ✅ | About page content |
 | Series Detail | collection_single.html | ✅ | Single series posts |
 | Tag Page | tag.html | ✅ | Posts filtered by tag + related tags |
+| Categories | categories.html | ✅ | Posts filtered by category |
 | Search | search.html | ✅ | Full-text search with filters |
 | Contact | contact.html | ✅ | Contact form with validation |
 | Newsletter | newsletter.html | ✅ | Subscription form, stats |
@@ -32,6 +33,8 @@
 | Media Library | media_library.html | ✅ | Image/file management |
 | Series Management | series_management.html | ✅ | CRUD for series |
 | Comments Management | comments_management.html | ✅ | Comment moderation |
+| Traffic | traffic.html | ✅ | Analytics & page views |
+| Subscribers | subscribers.html | ✅ | Newsletter subscriber stats |
 | Settings | settings.html | ✅ | Author settings |
 | Password Reset | password_reset.html | ✅ | Reset flow |
 
@@ -57,7 +60,7 @@
 - ✅ All existing page-specific CSS maintained
 
 ### JavaScript Files Created/Updated
-- ✅ `js/script.js` - Global functionality (theme, search, transitions)
+- ✅ `js/script.js` - Global functionality (theme, search, transitions, active nav highlighting)
 - ✅ `js/admin.js` - Unified admin sidebar + mobile toggle logic
 - ✅ `js/series_management.js` - Series CRUD operations
 - ✅ `js/comments_management.js` - Comment moderation
@@ -69,7 +72,7 @@
 - ✅ `js/app.js` - Homepage rendering
 - ✅ `js/contact.js` - Contact form handling
 - ✅ `js/newsletter.js` - Newsletter signup/unsubscribe
-- ✅ `js/search.js` - Search functionality
+- ✅ `js/search.js` - Search functionality (public, no auth gate)
 - ✅ `js/password_reset.js` - Password reset flow
 - ✅ `js/categories.js` - Category filtering
 - ✅ `js/tag.js` - Tag filtering
@@ -106,8 +109,10 @@ Dark Mode:
 - Form components
 - Card layouts
 - Grid systems
-- Mobile sidebar navigation
+- Mobile sidebar navigation (admin)
+- Mobile dropdown navigation (public)
 - Toast notifications
+- Custom cursor (desktop only)
 
 ### Features Implemented
 - ✅ Light/Dark theme toggle (localStorage persistence)
@@ -122,8 +127,12 @@ Dark Mode:
 - ✅ Markdown preview
 - ✅ Image upload preview
 - ✅ Admin sidebar with mobile slide-in
+- ✅ Public mobile dropdown nav with blur backdrop
 - ✅ Tabbed legal page (Privacy + Terms)
 - ✅ Comment moderation interface
+- ✅ Traffic analytics page
+- ✅ Subscribers management page
+- ✅ Active page highlighting in nav (admin + public)
 
 ---
 
@@ -174,6 +183,9 @@ GET  /api/comments/        → List comments
 POST /api/comments/        → Create comment
 PUT  /api/comments/<id>/   → Approve/reject comment
 DELETE /api/comments/<id>/ → Delete comment
+
+GET  /api/analytics/traffic/    → Traffic stats
+GET  /api/analytics/subscribers/ → Subscriber stats
 ```
 
 ---
@@ -195,10 +207,10 @@ Refer to `BACKEND_SETUP.md` for detailed Django setup and deployment instruction
 
 | Metric | Count |
 |--------|-------|
-| Total HTML Files | 27 |
-| CSS Files | 23 |
-| JS Files | 24 |
-| Total Lines of Code | ~10,000+ |
+| Total HTML Files | 28 |
+| CSS Files | 22 |
+| JS Files | 23 |
+| Total Lines of Code | ~10,500+ |
 | Pages Completed | 100% |
 | Responsive Design | Yes |
 | Dark Mode Support | Yes |
@@ -219,10 +231,14 @@ Refer to `BACKEND_SETUP.md` for detailed Django setup and deployment instruction
 ✅ Tag/category filtering
 ✅ Markdown preview in editor
 ✅ Image upload preview
-✅ Responsive navigation with mobile sidebar
+✅ Responsive navigation with mobile sidebar (admin)
+✅ Responsive dropdown navigation (public)
 ✅ Page transitions
 ✅ Comment moderation UI
 ✅ Tabbed legal page
+✅ Traffic analytics page
+✅ Subscribers management page
+✅ Active page highlighting in all navs
 
 ## ⚠️ What Needs Backend
 

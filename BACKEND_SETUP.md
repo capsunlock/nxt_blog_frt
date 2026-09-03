@@ -7,18 +7,20 @@ All HTML pages, CSS, and JS files have been generated:
 ### Pages Created:
 - ✅ index.html - Homepage
 - ✅ blog_post.html - Single post view
-- ✅ archive.html - Post archive
+- ✅ archive.html - Post archive + series grid
 - ✅ about.html - About page
 - ✅ contact.html - Contact form
 - ✅ newsletter.html - Newsletter signup
 - ✅ newsletter_unsubscribe.html - Unsubscribe page
 - ✅ search.html - Search results
-- ✅ tag_page.html - Tag filtering
-- ✅ series.html - Series listing
+- ✅ tag.html - Tag filtering + cloud
+- ✅ categories.html - Category filtering
 - ✅ collection_single.html - Single series view
 - ✅ series_management.html - Admin series management
-- ✅ privacy.html - Privacy policy
-- ✅ terms.html - Terms of service
+- ✅ legal.html - Privacy + Terms tabbed interface
+- ✅ comments_management.html - Comment moderation
+- ✅ traffic.html - Traffic analytics
+- ✅ subscribers.html - Subscriber stats
 - ✅ 404.html - 404 error page
 - ✅ 500.html - 500 error page
 - ✅ login.html - Authentication page
@@ -29,8 +31,8 @@ All HTML pages, CSS, and JS files have been generated:
 - ✅ post_list.html - All posts (admin)
 - ✅ media_library.html - Media management
 - ✅ settings.html - Author settings
-- ✅ author_profile.html - Author profile
-- ✅ contact.html - Contact page
+- ✅ author_page.html - Public author profile
+- ✅ password_reset.html - Password recovery
 
 ### CSS Files:
 - ✅ style.css - Global styles
@@ -361,3 +363,4 @@ async function renderPublicPosts() {
 - DRF Docs: https://www.django-rest-framework.org/
 - PostgreSQL: https://www.postgresql.org/
 - Render Deployment: https://render.com/docs
+

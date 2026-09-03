@@ -19,6 +19,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- 1.5 Active Page Highlighting ---
+    const currentPage = window.location.pathname.split('/').pop() || 'post_list.html';
+
+    // Admin sidebar highlighting
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // Public nav highlighting
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
 // --- 2. Custom Cursor ---
     const cursor = document.createElement('div');
     cursor.id = 'custom-cursor';
@@ -33,16 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const updateHoverEvents = () => {
-        const hoverables = document.querySelectorAll('a, button, .series-card, .index-row');
+        const hoverables = document.querySelectorAll('a, button, .series-card, .index-row, input, .search-overlay button, .search-overlay input');
         hoverables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
-                cursor.style.backgroundColor = 'var(--text-color)'; // Fills in solid
+                cursor.style.backgroundColor = 'var(--text-color)';
                 cursor.style.opacity = '1';
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.backgroundColor = 'rgba(0, 0, 0, 0.05)'; // Back to hollow
+                cursor.style.backgroundColor = 'transparent';
             });
         });
     };

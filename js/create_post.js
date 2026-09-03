@@ -25,8 +25,31 @@ const titleInput = document.getElementById('post-title');
 const subtitleInput = document.getElementById('post-subtitle');
 const wordCount = document.getElementById('word-count');
 const readTime = document.getElementById('read-time');
+const btnDraft = document.getElementById('btn-draft');
+const btnPublish = document.getElementById('btn-publish');
+const seriesSelect = document.getElementById('post-series');
+const categorySelect = document.getElementById('post-category');
+const categoryCreateWrapper = document.getElementById('category-create-wrapper');
+const newCategoryInput = document.getElementById('new-category-name');
 
 let selectedFileBlob = null;
+
+function validateForm() {
+    const hasTitle = titleInput.value.trim().length > 0;
+    const hasBody = input.value.trim().length > 0;
+    const hasCategory = document.getElementById('post-category').value.trim().length > 0;
+    const hasSlug = document.getElementById('post-slug').value.trim().length > 0;
+    const isValid = hasTitle && hasBody && hasCategory && hasSlug;
+    btnDraft.disabled = !isValid;
+    btnPublish.disabled = !isValid;
+    if (!isValid) {
+        btnDraft.style.opacity = '0.4';
+        btnPublish.style.opacity = '0.4';
+    } else {
+        btnDraft.style.opacity = '1';
+        btnPublish.style.opacity = '1';
+    }
+}
 
 function saveToLocal() {
     const postData = {
@@ -74,18 +97,9 @@ function updateEditor() {
     el.addEventListener('input', () => {
         updateEditor();
         saveToLocal();
+        validateForm();
     });
 });
-
-// Theme Toggle
-document.getElementById('theme-switcher').onclick = () => {
-    const html = document.documentElement;
-    const isLight = html.getAttribute('data-theme') === 'light';
-    html.setAttribute('data-theme', isLight ? 'dark' : 'light');
-    document.getElementById('theme-icon').setAttribute('data-lucide', isLight ? 'sun' : 'moon');
-    lucide.createIcons();
-    showToast(`Theme: ${isLight ? 'Dark' : 'Light'}`, isLight ? 'moon' : 'sun');
-};
 
 // Hero Image Logic
 const heroInput = document.getElementById('hero-input');
@@ -148,19 +162,32 @@ function closeMediaModal() {
 }
 
 // Action Buttons
+const confirmModal = document.getElementById('confirm-modal');
+const confirmDelete = document.getElementById('confirm-delete');
+const confirmCancel = document.getElementById('confirm-cancel');
+
 document.getElementById('btn-reset').onclick = () => {
-    if (confirm("Delete current draft forever?")) {
-        localStorage.removeItem('journal_draft');
-        location.reload(); 
-    }
+    confirmModal.style.display = 'flex';
 };
 
-document.getElementById('btn-draft').onclick = () => {
+confirmCancel.onclick = () => {
+    confirmModal.style.display = 'none';
+};
+
+confirmDelete.onclick = () => {
+    localStorage.removeItem('journal_draft');
+    confirmModal.style.display = 'none';
+    location.reload();
+};
+
+btnDraft.onclick = () => {
+    if (btnDraft.disabled) return;
     saveToLocal();
     showToast("Draft Saved Locally");
 };
 
-document.getElementById('btn-publish').onclick = () => {
+btnPublish.onclick = () => {
+    if (btnPublish.disabled) return;
     showToast("Post Published!", "send");
 };
 
@@ -178,7 +205,12 @@ function showToast(msg, icon = "check") {
     }, 3000);
 }
 
-window.onload = loadFromLocal;
+window.onload = () => {
+    loadFromLocal();
+    populateCategoryDropdown();
+    populateSeriesDropdown();
+    validateForm();
+};
 
 const mobilePreviewBtn = document.getElementById('mobile-preview-toggle');
 const editorContainer = document.querySelector('.editor-container');
@@ -204,7 +236,6 @@ mobilePreviewBtn.onclick = () => {
 // ... existing variables ...
 const seriesToggle = document.getElementById('is-series-toggle');
 const seriesWrapper = document.getElementById('series-select-wrapper');
-const seriesSelect = document.getElementById('post-series');
 
 // Load Series Options from localStorage (Created in Series Management)
 function populateSeriesDropdown() {
@@ -217,7 +248,121 @@ function populateSeriesDropdown() {
         opt.textContent = series.name;
         seriesSelect.appendChild(opt);
     });
+    
+    const createOpt = document.createElement('option');
+    createOpt.value = '__create__';
+    createOpt.textContent = '+ Create new series...';
+    seriesSelect.appendChild(createOpt);
 }
+
+seriesSelect.addEventListener('change', () => {
+    const createWrapper = document.getElementById('series-create-wrapper');
+    const newSeriesInput = document.getElementById('new-series-name');
+    
+    if (seriesSelect.value === '__create__') {
+        createWrapper.style.display = 'flex';
+        newSeriesInput.value = '';
+        newSeriesInput.focus();
+    } else {
+        createWrapper.style.display = 'none';
+        saveToLocal();
+    }
+});
+
+document.getElementById('save-new-series').addEventListener('click', () => {
+    const name = document.getElementById('new-series-name').value.trim();
+    if (name) {
+        const seriesList = JSON.parse(localStorage.getItem('journal_series') || '[]');
+        const newSeries = {
+            id: Date.now().toString(),
+            name: name,
+            desc: '',
+            postCount: 0
+        };
+        seriesList.push(newSeries);
+        localStorage.setItem('journal_series', JSON.stringify(seriesList));
+        populateSeriesDropdown();
+        seriesSelect.value = newSeries.id;
+        document.getElementById('series-create-wrapper').style.display = 'none';
+        showToast('Series created');
+        saveToLocal();
+    }
+});
+
+document.getElementById('new-series-name').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('save-new-series').click();
+    } else if (e.key === 'Escape') {
+        seriesSelect.value = '';
+        document.getElementById('series-create-wrapper').style.display = 'none';
+        saveToLocal();
+    }
+});
+
+function populateCategoryDropdown() {
+    const posts = JSON.parse(localStorage.getItem('journal_posts') || '[]');
+    const categorySet = new Set();
+    
+    posts.forEach(post => {
+        if (post.category && post.category.trim()) {
+            categorySet.add(post.category.trim());
+        }
+    });
+    
+    const currentValue = categorySelect.value;
+    categorySelect.innerHTML = '<option value="">Select Category...</option>';
+    
+    Array.from(categorySet).sort().forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        categorySelect.appendChild(opt);
+    });
+    
+    const createOpt = document.createElement('option');
+    createOpt.value = '__create__';
+    createOpt.textContent = '+ Create new category...';
+    categorySelect.appendChild(createOpt);
+    
+    categorySelect.value = currentValue;
+}
+
+categorySelect.addEventListener('change', () => {
+    if (categorySelect.value === '__create__') {
+        categoryCreateWrapper.style.display = 'flex';
+        newCategoryInput.value = '';
+        newCategoryInput.focus();
+    } else {
+        categoryCreateWrapper.style.display = 'none';
+        saveToLocal();
+    }
+});
+
+document.getElementById('save-new-category').addEventListener('click', () => {
+    const name = newCategoryInput.value.trim();
+    if (name) {
+        const posts = JSON.parse(localStorage.getItem('journal_posts') || '[]');
+        if (posts.length > 0) {
+            posts[0].category = name;
+            localStorage.setItem('journal_posts', JSON.stringify(posts));
+        }
+        populateCategoryDropdown();
+        categorySelect.value = name;
+        categoryCreateWrapper.style.display = 'none';
+        showToast('Category created');
+        saveToLocal();
+    }
+});
+
+newCategoryInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('save-new-category').click();
+    } else if (e.key === 'Escape') {
+        categorySelect.value = '';
+        categoryCreateWrapper.style.display = 'none';
+        saveToLocal();
+    }
+});
 
 // Toggle Visibility
 seriesToggle.onchange = () => {
@@ -268,3 +413,5 @@ function loadFromLocal() {
 
 // Add event listener for the dropdown change
 seriesSelect.addEventListener('change', saveToLocal);
+
+validateForm();

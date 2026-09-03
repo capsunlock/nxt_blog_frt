@@ -463,6 +463,12 @@ footer {
         color: var(--accent-color);
     }
 
+    .nav-links a.active {
+        opacity: 1;
+        color: var(--accent-color);
+        font-weight: 700;
+    }
+
     .nav-container {
         padding: 1rem 5%;
     }
@@ -482,20 +488,20 @@ footer {
     width: 20px;
     height: 20px;
     border: 2px solid var(--text-color);
-    background-color: rgba(0, 0, 0, 0.05); /* Very faint fill to give it body */
+    background-color: transparent;
     border-radius: 50%;
     pointer-events: none; /* Critical: allows clicking through the cursor */
-    z-index: 10000;
-    mix-blend-mode: difference; /* High-end effect: cursor changes color based on background */
-    transition: transform 0.15s ease-out, background-color 0.2s ease; /* Smooth hover scaling */
-    transform: translate(-50%, -50%); 
+    z-index: 99999;
+    transition: transform 0.15s ease-out, background-color 0.2s ease, border-color 0.2s ease;
+    transform: translate(-50%, -50%);
     display: none; /* Hidden by default, shown via JS or desktop check */
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
 }
 
 /* Ensure visibility on dark mode */
 [data-theme="dark"] #custom-cursor {
     border-color: var(--text-color);
-    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
 }
 
 /* Show only on desktop */
@@ -503,7 +509,7 @@ footer {
     #custom-cursor { 
         display: block; 
     }
-    body, a, button {
+    body, a, button, input, .nav-links a, .search-overlay button, .search-overlay input {
         cursor: none !important;
     }
 }
