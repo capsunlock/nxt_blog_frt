@@ -71,8 +71,8 @@ Accessibility: ✅ YES
 ### Functionality
 ```
 JavaScript Files: 23 total
-├─ ✅ script.js (global - theme, search, transitions, cursor, active nav)
-├─ ✅ admin.js (admin sidebar + mobile toggle)
+├─ ✅ script.js (global - theme, search, transitions, cursor, sidebar toggle, active nav)
+├─ ✅ admin.js (dashboard stats, dashboard.html only)
 ├─ ✅ search.js (public search, no auth)
 ├─ ✅ tag.js, archive.js, categories.js
 ├─ ✅ comments_management.js

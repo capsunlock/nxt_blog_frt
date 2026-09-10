@@ -1,25 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') lucide.createIcons();
     
-    // Mobile Sidebar Logic
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    
-    function toggleSidebar() {
-        const isActive = sidebar.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    }
-    
-    if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
-    if (overlay) overlay.addEventListener('click', toggleSidebar);
-    
-    document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', () => {
-            if(window.innerWidth <= 1024) toggleSidebar();
-        });
-    });
-    
     // Load existing settings
     const savedConfig = localStorage.getItem('journal_config');
     if (savedConfig) {

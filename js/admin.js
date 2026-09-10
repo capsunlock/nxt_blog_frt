@@ -3,25 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // Mobile Sidebar Logic
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    
-    function toggleSidebar() {
-        const isActive = sidebar.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    }
-    
-    if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
-    if (overlay) overlay.addEventListener('click', toggleSidebar);
-    
-    document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', () => {
-            if(window.innerWidth <= 1024) toggleSidebar();
-        });
-    });
-
     renderDashboard();
 });
 
@@ -106,7 +87,7 @@ function renderRecentPosts() {
                 ${words} words • ${minutes} min read
             </div>
             <div class="post-actions">
-                <button class="btn btn-icon" onclick="location.href='create_post.html'" title="Edit">
+                <button class="btn btn-icon" onclick="location.href='post_create.html'" title="Edit">
                     <i data-lucide="edit-3" style="width:16px"></i>
                 </button>
                 ${!post.isDraft ? `<button class="btn btn-icon" onclick="location.href='blog_post.html?slug=${post.slug || post.title.toLowerCase().replace(/\\s+/g, '-')}'" title="View">
@@ -142,7 +123,11 @@ function updateStats() {
         totalMinutes += Math.max(1, Math.ceil(words / 200));
     }
 
-    document.getElementById('total-word-count').innerText = totalWords.toLocaleString();
-    document.getElementById('total-read-time').innerText = totalMinutes;
-    document.getElementById('total-posts-count').innerText = posts.length + (draftData ? 1 : 0);
+    const totalWordCountEl = document.getElementById('total-word-count');
+    const totalReadTimeEl = document.getElementById('total-read-time');
+    const totalPostsCountEl = document.getElementById('total-posts-count');
+
+    if (totalWordCountEl) totalWordCountEl.innerText = totalWords.toLocaleString();
+    if (totalReadTimeEl) totalReadTimeEl.innerText = totalMinutes;
+    if (totalPostsCountEl) totalPostsCountEl.innerText = posts.length + (draftData ? 1 : 0);
 }

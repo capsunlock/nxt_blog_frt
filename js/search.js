@@ -74,6 +74,5 @@ function performSearch(query) {
 document.querySelectorAll('.filter-checkbox')?.forEach(checkbox => {
     checkbox.addEventListener('change', () => {
         // Implement filtering logic
-        console.log('Filter changed:', checkbox.value);
     });
 });

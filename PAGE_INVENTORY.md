@@ -139,7 +139,7 @@
 ## JavaScript Files (23 total)
 
 ### Global (1 file)
-- ✅ `script.js` - Global functionality (theme, search, transitions, custom cursor, active nav highlighting)
+ - ✅ `script.js` - Global functionality (theme, search, transitions, custom cursor, active nav highlighting, sidebar toggle)
 
 ### Public Pages (8 files)
 - ✅ `app.js` - Homepage rendering
@@ -154,8 +154,8 @@
 - ✅ `contact.js` - Contact form handler
 
 ### Admin Pages (15 files)
-- ✅ `script.js` - Global functionality (theme, search, transitions, cursor, active nav)
-- ✅ `admin.js` - General admin sidebar + mobile toggle
+ - ✅ `script.js` - Global functionality (theme, search, transitions, cursor, sidebar toggle, active nav)
+- ✅ `admin.js` - Dashboard stats rendering (dashboard.html only)
 - ✅ `login.js` - Authentication form
 - ✅ `password_reset.js` - Password recovery
 - ✅ `dashboard_home.js` - Dashboard overview
@@ -239,7 +239,7 @@ d:\USER\Play\08\nxt_blog_frt\
 │
 ├── js/
 │   ├── script.js (global)
-│   ├── admin.js (admin sidebar)
+│   ├── admin.js (dashboard stats)
 │   ├── search.js, tag.js, categories.js
 │   ├── archive.js, series.js
 │   ├── comments_management.js

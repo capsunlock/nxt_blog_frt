@@ -2,25 +2,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     lucide?.createIcons();
     
-    // Mobile Sidebar Logic
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    
-    function toggleSidebar() {
-        const isActive = sidebar.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    }
-    
-    if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
-    if (overlay) overlay.addEventListener('click', toggleSidebar);
-    
-    document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', () => {
-            if(window.innerWidth <= 1024) toggleSidebar();
-        });
-    });
-    
     loadSeries();
 });
 
@@ -69,11 +50,6 @@ document.getElementById('seriesForm')?.addEventListener('submit', (e) => {
     const name = document.getElementById('series-name').value;
     const description = document.getElementById('series-desc').value;
     const slug = document.getElementById('series-slug').value;
-    
-    if (!name || !slug) {
-        alert('Please fill in all required fields');
-        return;
-    }
     
     let series = JSON.parse(localStorage.getItem('journal_series') || '[]');
     const isEdit = document.getElementById('seriesForm').dataset.edit;

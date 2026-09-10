@@ -70,8 +70,8 @@ See [FRONTEND_COMPLETE.md](FRONTEND_COMPLETE.md) for full details.
 
 | File | Purpose |
 |------|---------|
-| script.js | Global: theme, search, transitions, cursor, active nav |
-| admin.js | Admin sidebar + mobile toggle |
+| script.js | Global: theme, search, transitions, cursor, sidebar toggle, active nav |
+| admin.js | Dashboard stats rendering (dashboard.html only) |
 | search.js | Public search (no auth) |
 | tag.js | Tag filtering |
 | archive.js | Archive page |
@@ -379,7 +379,7 @@ d:\USER\Play\08\nxt_blog_frt\
 │
 ├── JavaScript (23 files)
 │   ├── script.js (global)
-│   ├── admin.js (admin sidebar)
+│   ├── admin.js (dashboard stats)
 │   ├── search.js, tag.js, archive.js, categories.js
 │   ├── comments_management.js, series_management.js
 │   ├── dashboard_home.js, media_library.js

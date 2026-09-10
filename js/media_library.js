@@ -1,18 +1,5 @@
 lucide.createIcons();
 
-// --- Mobile Sidebar Logic ---
-const menuToggle = document.getElementById('menu-toggle');
-const sidebar = document.querySelector('.sidebar');
-const overlay = document.getElementById('sidebar-overlay');
-
-function toggleMenu() {
-    const isActive = sidebar.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-}
-
-if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
-if (overlay) overlay.addEventListener('click', toggleMenu);
-
 // --- Toast Logic ---
 function showToast(message, iconName = 'check') {
     const container = document.getElementById('toast-container');

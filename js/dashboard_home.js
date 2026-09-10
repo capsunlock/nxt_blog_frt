@@ -1,26 +1,7 @@
 // 1. Icon Initialization
 if (typeof lucide !== 'undefined') lucide.createIcons();
 
-// 2. Sidebar Navigation Logic
-const menuToggle = document.getElementById('menu-toggle');
-const sidebar = document.querySelector('.sidebar');
-const overlay = document.getElementById('sidebar-overlay');
-
-function toggleSidebar() {
-    const isActive = sidebar.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-}
-
-if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
-if (overlay) overlay.addEventListener('click', toggleSidebar);
-
-document.querySelectorAll('.sidebar-link').forEach(link => {
-    link.addEventListener('click', () => {
-        if(window.innerWidth <= 1024) toggleSidebar();
-    });
-});
-
-// 3. Profile Edit Logic
+// 2. Profile Edit Logic
 function toggleEditMode() {
     document.getElementById('profile-header').classList.toggle('edit-mode');
     lucide.createIcons();

@@ -60,8 +60,8 @@
 - ✅ All existing page-specific CSS maintained
 
 ### JavaScript Files Created/Updated
-- ✅ `js/script.js` - Global functionality (theme, search, transitions, active nav highlighting)
-- ✅ `js/admin.js` - Unified admin sidebar + mobile toggle logic
+ - ✅ `js/script.js` - Global functionality (theme, search, transitions, active nav highlighting, sidebar toggle)
+ - ✅ `js/admin.js` - Dashboard rendering (load stats, author list) — loaded only on dashboard.html
 - ✅ `js/series_management.js` - Series CRUD operations
 - ✅ `js/comments_management.js` - Comment moderation
 - ✅ `js/media_library.js` - Media library interactions
